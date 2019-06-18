@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Unit</title>
+    <meta charset="UTF-8" />
+
+    <style type="text/css">
+        .box1 {
+            width: 300px;
+            height: 100px;
+            background-color: red;
+            /* display: inline-block; */
+            float: left;
+        }
+        
+        .box2 {
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            float: left;
+        }
+        
+        .box3 {
+            width: 300px;
+            height: 120px;
+            background-color: blue;
+            float: left;
+        }
+        
+        p {
+            background-color: antiquewhite;
+        }
+        
+        .box4 {
+            background-color: blueviolet;
+            float: left;
+        }
+        
+        .s1 {
+            background-color: blueviolet;
+            float: left;
+            width: 100px;
+            /* height: 80px; */
+        }
+    </style>
+</head>
+
+<body>
+
+    <p style="background-color: aqua; padding-left: 200px;">
+        文档流处在网页的最底层，表示的是一个页面中的位置，所创建的元素都在文档流中。<br> 当元素宽高为auto时，指定内边距不会影响可见框的大小，会自动改变宽，适应内边距。
+    </p>
+    <dl>
+        <dt>块元素</dt>
+        <dd>会独占一行，自上向下排列</dd>
+        <dd>默认值宽度父元素的100%</dd>
+        <dd>默认高度被内容撑开</dd>
+
+        <dt>内联元素</dt>
+        <dd>只占自身的大小，默认从左向右排列，一行不够换到下一行</dd>
+        <dd>在文档流中，默认宽高都会被内容撑开</dd>
+    </dl>
+
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+
+    <p>想要使div水平排列，可以使块元素脱离文档流，使用 float: 使元素浮动</p>
+    <p>none默认值在文档流中排列。 left脱离文档流，想页面左侧浮动。right脱离文档流，想右侧浮动</p>
+    <p>当一个元素浮动脱离文档流后，下面的元素会向上移动。如果浮动元素上面试一个没有浮动的块元素，则浮动不会超过块元素</p>
+    <p>浮动的元素不会超过上面的兄弟元素，最懂一边齐</p>
+    <p>浮动元素不会盖住文字，文字会环绕在浮动元素的周围</p>
+
+
+    <div class="box4">
+        this is div 当元素设置为浮动，会完全脱离文档流，块元素的宽度和高度会被内容撑开。
+    </div>
+
+    <span class="s1">
+        this is span 内联元素脱离文档流会变成块元素，设置宽高起作用了。
+    </span>
+
+</body>
+
+</html>

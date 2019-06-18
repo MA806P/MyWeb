@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Form</title>
+    <meta charset="UTF-8" />
+
+
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <p>表单向服务器提交信息的</p>
+    <p>form 创建表单 只是一个空白的表单，还要添加表单项</p>
+    <p>action 属性指向一个服务器的地址，服务器根据 name 获取输入的值。 action?name1=xx&name2=xx </p>
+    <p> 选择的表单，不需要用户输入，需要指定value属性值，提交才知提价的是哪个</p>
+    <p>checked selected 默认选中</p>
+    <p>label for="idname" 表单中提示文字点击选中表单</p>
+    <p>fieldset 用来为表单分组 legend可设置分组标题</p>
+
+    <form action="01-HelloWorld.html">
+
+        <fieldset>
+            <legend>信息</legend>
+            用户名 <input type="text" name="username" value="默认值" />
+            <br> 密码 <input type="password" name="password" />
+        </fieldset>
+
+        <fieldset>
+            <legend>个性</legend>
+            <br> 性别 <input id="man" type="radio" name="sex" value="male" /> <label for="man">男</label>
+            <input id="woman" type="radio" name="sex" value="female" checked="checked" /><label for="woman">女</label>
+            <br> 爱好 <br> <input type="checkbox" name="hobby" value="football" /> 足球 <br>
+            <input type="checkbox" name="hobby" value="basketball" /> 篮球 <br>
+            <input type="checkbox" name="hobby" value="run" checked="checked" /> 跑步 <br>
+        </fieldset>
+
+
+        <br> 你喜欢
+        <!-- multiple="multiple" -->
+        <select name="like">
+            <optgroup label="123">
+                    <option value="like1">like text 1</option>
+                    <option value="like2">like text 2</option>
+                    <option value="like3" selected="selected">like text 3</option>
+            </optgroup>
+
+            <optgroup label="456">
+                    <option value="like4">like text 4</option>
+                    <option value="like5">like text 5</option>
+                    <option value="like6">like text 6</option>
+            </optgroup>
+            
+        </select>
+        <br> 自我介绍
+        <textarea name="info" cols="30" rows="3"></textarea>
+        <br>
+
+        <br>
+        <input type="button" value="单纯的按钮" />
+        <br>
+        <input type="submit" value="注册" />
+        <input type="reset" value="重置" />
+        <br>
+        <button type="submit">注册</button>
+        <button type="reset">重置</button>
+    </form>
+
+
+</body>
+
+
+
+</html>

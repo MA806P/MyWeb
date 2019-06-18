@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CSS</title>
+    <meta charset="UTF-8" />
+
+
+    <style type="text/css">
+        div {
+            background-color: aquamarine;
+        }
+        /* 
+        p{ background-color: }
+        #p1{ background-color: }
+        .p2{ background-color: }
+        当不同的选择器，选中同一个元素时，且设置相同的样式，产生了冲突，优先级规则
+        优先级规则：
+            内联样式，优先级 1000
+            id选择器， 100
+            类和伪类，  10
+            元素选择器， 1
+            通配* ， 0
+            继承的样式，没有优先级
+        
+        当选择器包含多种选择器，需要将多种选择器优先级相加然后再比较，但是不会超过他的最大数量级
+        如选择器优先级一样使用靠后的样式
+
+        可在样式最后添加一个 !important 获得最高优先级，不推荐使用
+        p{ background-color: red !important ;}
+
+        a的伪类，优先级一样，写的话按照下面的顺序写：
+        :link
+        :visited  //已经点击
+        :hover  //鼠标移入
+        :active  //正在点击
+
+
+         */
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        给父元素设置过样式后，其中的后代元素会继承样式
+        background-color 不能继承，p span背景颜色是透明的
+     -->
+    <div style="font-size: 30px;">
+        <p>
+            this is p
+            <span> this is span</span>
+        </p>
+
+    </div>
+
+    <span>this is out span</span>
+
+    <p id="p1" class="p2"></p>
+
+</body>
+
+</html>

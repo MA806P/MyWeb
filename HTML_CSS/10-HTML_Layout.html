@@ -1,0 +1,116 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Layout</title>
+    <meta charset="utf-8" />
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav {
+            width: 100%;
+            height: 78px;
+            background-color: rgb(235, 247, 243);
+            border: 1px rgb(235, 247, 243) solid;
+        }
+        
+        .nav-list {
+            width: 800px;
+            height: 40px;
+            list-style-type: none;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        
+        .nav-list li {
+            width: 25%;
+            float: left;
+        }
+        
+        .nav-list a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            color: gray;
+            font-weight: bold;
+        }
+        
+        .nav-list a:hover {
+            background-color: aqua;
+        }
+        
+        .head {
+            width: 800px;
+            height: 100px;
+            background-color: aquamarine;
+            margin: 0px auto;
+        }
+        
+        .content {
+            width: 800px;
+            height: 500px;
+            background-color: greenyellow;
+            margin: 10px auto;
+        }
+        
+        .bottom {
+            width: 800px;
+            height: 100px;
+            background-color: yellowgreen;
+            margin: 0px auto;
+        }
+        
+        .left {
+            width: 200px;
+            height: 100%;
+            background-color: rgb(100, 161, 141);
+            float: left;
+        }
+        
+        .center {
+            width: 380px;
+            height: 100%;
+            background-color: rgb(123, 153, 78);
+            margin: 0 10px;
+            float: left;
+        }
+        
+        .right {
+            width: 200px;
+            height: 100%;
+            background-color: rgb(32, 43, 10);
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav">
+        <ul class="nav-list">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">新闻</a></li>
+            <li><a href="#">图片</a></li>
+            <li><a href="#">导航</a></li>
+        </ul>
+    </div>
+
+    <div class="head"></div>
+
+    <div class="content">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    </div>
+
+    <div class="bottom"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CSS</title>
+    <meta charset="UTF-8" />
+
+
+    <style type="text/css">
+        ul {
+            list-style: none;
+        }
+        
+        .box1 {
+            width: 500px;
+            height: 500px;
+            margin: 0px auto;
+            /* background-color: antiquewhite;
+            background-image: url(Resource/img_01.jpg);
+            background-repeat: no-repeat;
+            background-position: center; */
+            /* background-position-x: 20px; */
+            background: antiquewhite url(Resource/img_01.jpg) no-repeat center;
+        }
+        
+        body {
+            background-image: url(Resource/img_01.jpg);
+            background-repeat: no-repeat;
+            background-position: right top;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>
+        <strong>警告：strong 表示内容的重要性。</strong>
+        <br> 标签em表示一段内容的
+        <em>着重点</em>哈哈。
+        <br> 通常em为斜体，stong显示为粗体。
+    </p>
+
+    <p>
+        <i>i标签内容斜体显示</i>
+        <b>b标签内容粗体显示</b>
+        <br>
+    </p>
+
+    <p>
+        smal标签中的内容要小一点<small>我是small中的</small>
+    </p>
+
+    <p>
+        书名、歌名、电影名 可以用cite表示，《爱》 <cite>《爱》</cite>
+    </p>
+
+    <p>
+        引号用q表示，她说：<q>你好。</q>
+    </p>
+
+    <p>
+        blockquote:
+        <blockquote>blockquote 表示一个长引用，块级引用</blockquote>
+    </p>
+
+    <p>
+        sup定义上标，2<sup>2</sup> sub定义下标，H<sub>2</sub>O
+    </p>
+
+    <p>
+        <del>123456</del> <br> 123 <br> 下划线
+        <ins>123</ins>
+    </p>
+
+    <pre>
+        <code>
+            function hello() {
+                alert('hello');
+            }
+        </code>
+    </pre>
+
+
+    <br>
+    <hr>
+    <br>
+
+    <div>
+        <p>
+            无序列表 ul，li列表项 <br/>
+            <span>ul的type=disc square circle属性可修改列表项符号</span> <br>
+            <span>要想不要 list-style: none; </span><br>
+            <span>默认符号一般不用，可采用为li设置背景图来设置 </span><br>
+        </p>
+        <ul type="circle">
+            <li>item1</li>
+            <li>item2</li>
+        </ul>
+
+        <p>
+            有序列表 ol，li列表项 <br/>
+            <span>ul的type=1 A a i I 可设置序号 </span> <br>
+            <span>要想不要 list-style: none; </span><br>
+            <span>默认符号一般不用，可采用为li设置背景图来设置 </span><br>
+        </p>
+        <ol type="I">
+            <li>item1</li>
+            <li>item2</li>
+            <li>
+                item3
+                <ul type="circle">
+                    <li>item1</li>
+                    <li>item2</li>
+                </ul>
+            </li>
+            <li>item4</li>
+            <li>item5</li>
+        </ol>
+
+
+        <dl>
+            <dt>dl自定义列表 dt列表项</dt>
+            <dd>dd对dt的描述</dd>
+        </dl>
+
+
+    </div>
+
+    <hr>
+
+    <div class="box1">
+        <p>background-image: url(Resource/img_01.jpg); </p>
+        <p>默认，背景图片小于元素，会平铺。图片大小大于元素，图片会显示不完全。 </p>
+        <p>background-repeat: no-repeat; 背景图片不重复 </p>
+        <p>repeat-x，背景图水平方向重复，导航条可以使用一条图片水平平铺显示。</p>
+        <p>background-position: right bottom; 设置图片的位置</p>
+        <p>background-position: 20px 20px; </p>
+        <p>background-attachment: fixed; scroll 是否跟随滚动。</p>
+        <p>fixed位置时相对于浏览器的窗口, 所以一般只设置给body元素，不设置给其他元素</p>
+        <p>background:可以同时设置所有背景相关的样式，没有顺序、数量要求，不写的就使用默认值</p>
+    </div>
+
+
+</body>
+
+</html>

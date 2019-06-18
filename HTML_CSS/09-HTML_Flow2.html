@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Float</title>
+    <meta charset="utf-8" />
+
+    <style type="text/css">
+        .box1 {
+            border: 10px brown solid;
+            background-color: aqua;
+            /* 
+            ----------------------------------------------
+            解决高度塌陷方案一： 
+            w3c的标准，元素都有一个隐含的属性 Block Formatting Context, BFC 默认是关闭的
+            开启 BFC 时
+            1、父元素的垂直外边距不会和子元素重叠
+            2、元素不会被浮动元素所覆盖
+            3、元素可以包含浮动的子元素，可解决塌陷的问题
+
+            开启 BFC 的方法
+            1、设置元素为浮动
+            2、设置元素为绝对定位
+            3、设置元素为 inline-block
+            4、设置 overflow: 为非 visible 的。
+
+            float: left; 上面1、2 两种方法效果一样，虽然可以撑开父元素，
+            但会导致父元素宽度丢失，下面的元素也会上移，不能解决问题。
+            
+            display: inline-block; 第三中方法回导致父元素宽度丢失
+            overflow: hidden; 是副作用最小的解决方式。
+            
+            IE6及以下不支持BFC，但是又另一个隐含的属性 hasLayout 可以开始这个来代替。
+            zoom:1;就开启了 hasLayout ，表示放大。zoom:1;只有IE6 支持。
+
+
+            ----------------------------------------------
+            解决高度塌陷方案二：
+            在高度塌陷的父元素的最后，添加一个空白的 div 这个没有浮动，可以撑开父元素的高度。
+            然后对其进行清除浮动不要让空白div受到浮动的兄弟元素的影响，这样可以撑开父元素的高度
+            这个方案基本没有副作用，但是会添加多余的div
+
+            ----------------------------------------------
+            终极解决高度塌陷方案：
+            和方案二原理相似，是通过 after 伪类，向元素的最后添加一个空白的元素，然后对其清除浮动
+            IE6 不支持 再写一下 .clearfix:after { zoom: 1; }
+             */
+            /* overflow: hidden;
+            zoom: 1; */
+        }
+        
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            /* 文档流中父元素的高度是被子元素撑开的，
+            当子元素脱离了文档流导致子元素无法撑起父元素的高度，塌陷了
+            父元素下面的所有元素都会向上移动，导致布局混乱，需要处理 */
+            float: left;
+        }
+        
+        .clear {
+            clear: both;
+        }
+        
+        .box3 {
+            height: 140px;
+            width: 140px;
+            background-color: yellow;
+        }
+        
+        .box4 {
+            height: 100px;
+            width: 100px;
+            background-color: rebeccapurple;
+            float: left;
+        }
+        
+        .box5 {
+            height: 140px;
+            width: 140px;
+            background-color: rgb(105, 105, 31);
+            /* 
+            clear 可以用来清除其他浮动元素对当前元素的影响。none left right both
+            both 清除影响最大的
+             */
+            /* clear: left; */
+            float: right;
+        }
+        
+        .box6 {
+            height: 160px;
+            width: 160px;
+            background-color: rgb(159, 111, 207);
+            clear: left;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="box1 clearfix">
+        <div class="box2"></div>
+        <!-- <div class="clear"></div> 有更好的解决方法-->
+    </div>
+    <div class="box3"></div>
+
+    <hr>
+
+    <div class="box4"></div>
+    <div class="box5"></div>
+    <div class="box6"></div>
+</body>
+
+</html>

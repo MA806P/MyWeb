@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CSS</title>
+    <meta charset="UTF-8" />
+
+
+    <style type="text/css">
+        span {
+            background-color: green;
+        }
+        
+        #div1 p span {
+            background-color: red;
+        }
+        /* 子元素选择器，只在子元素中起作用，孙子元素不起作用 
+            IE6 以下不支持
+        */
+        
+        div>span {
+            background-color: blue;
+        }
+        /* 
+        伪类中门用来表示元素的一种特殊的状态，例如访问过的超链接
+        当需要为特殊状态的元素设置样式时，可以使用伪类
+        a:link 表示普通的连接，没访问过的
+        a:visited 表示访问过的连接，为了用户隐私问题，只能设置字体的颜色
+        a:hover 表示鼠标移入的状态
+        a:active 表示点击住的状态
+        hover  active  也可用于 p 等其他标签
+        focus 获取焦点，input文本输入框中可以使用
+        selection 选中的内容
+
+        IE 6 中不支持对超链接以外的 hover active focus
+         */
+        
+        a:link {
+            color: red;
+        }
+        
+        a:visited {
+            color: blue;
+        }
+        
+        a:hover {
+            color: gray;
+        }
+        
+        a:active {
+            color: yellow;
+        }
+        
+        p:hover {
+            background-color: aqua;
+        }
+        
+        p:active {
+            background-color: bisque;
+        }
+        
+        input:focus {
+            background-color: blue;
+        }
+        
+        p::selection {
+            background-color: red;
+        }
+        /* 
+        伪元素，用来表示元素中的一些特殊的位置
+        first-letter  first-line   before after
+         */
+        
+        p:first-letter {
+            color: tomato;
+            font-size: 40px;
+        }
+        
+        p::before {
+            content: "在前面";
+            color: blueviolet;
+        }
+        /* 
+        属性选择器
+        title 为所有具有title属性的原色，设置背景色
+        title^="abc" 以abc开头的title, 
+        title$="abc" 以abc结尾的title
+        title*="abc" 包含abc的title */
+        
+        span[title] {
+            background-color: yellowgreen;
+        }
+        
+        span[title="hello"] {
+            background-color: yellow;
+        }
+        
+        span[title^="abc"] {
+            background-color: yellow;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <div id="div1">
+        <span>div text. </span>
+        <p>
+            <span>p text. </span>
+        </p>
+    </div>
+
+    <div>
+        <p>
+            <span>other div p span</span>
+        </p>
+        <span>other div span</span>
+    </div>
+
+    <span>This is text.</span>
+
+    <br/>
+    <hr/>
+    <br/>
+
+    <a href="http://www.baidu.com" target="_blank">this is a link</a>
+    <br/>
+    <a href="#">this is a link</a>
+    <br/>
+
+    <p>this is a text </p>
+
+    <input type="text" />
+
+
+    <br/>
+    <!-- title 属性 -->
+    <span title="hello">鼠标移动到这里显示title属性内容</span>
+    <br/>
+
+</body>
+
+</html>

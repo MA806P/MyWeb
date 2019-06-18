@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Position</title>
+    <meta charset="utf-8" />
+
+    <style type="text/css">
+        /* 
+        定位，可以任意摆放元素位置
+        position 属性来设置元素的定位，可选值：
+        static：默认值，元素没有开启定位
+        relative：相对定位
+        absolute：绝对定位
+        fixed：固定定位，绝对定位的一种
+
+        开启元素定位，position 非 static
+        可通过 left right top bottom 设置元素偏移量
+
+        relative：开启了元素的相对定位
+        1、开启相对定位，而不设置偏移量时，元素不会发生任何变化
+        2、相对定位是相对于元素在文档流中原位置进行定位
+        3、相对定位不会脱离文档流
+        4、相对定位会使元素提升一个层次
+        5、相对定位不会改变元素的性质，块 内联 不变
+        
+
+        absolute：开启绝对定位
+        1、会使元素脱离文档流
+        2、不设置偏移量，元素位置不会发生变化
+        3、是相对于离他最近的开启了定位的祖先元素进行定位的，
+            一般情况开启子元素的绝对定位，都会同时开启父元素的相对定位
+            如果所有祖先元素都没开启定位，则会相对于浏览器窗口进行定位，坐标原地在左上角
+        4、会使元素提升一个层级
+        5、会改变元素的性质
+            内联元素变成块元素
+            块元素宽高默认都被内容撑开
+
+        
+        fixed：固定定位，也是一种绝对定位，大部分特点和绝对定位一样
+        不同点：
+        固定定位永远都会相对于浏览器窗口进行定位
+        固定定位会固定在浏览器长宽某个位置，不会随滚动条滚动
+        IE6不支持
+
+
+        如定位元素层级一样，下面的元素会盖住上面的
+        z-index 可以用来设置元素层级，值越大越优先显示。但是父元素层级再高，也不会盖住子元素。
+        对于没有开启定位的元素不能使用 z-index
+
+        opacity: 0.5;设置元素的透明度，0-1之间的值
+        opacity 在IE8及以下的使用 filter: alpha(opacity=50); 代替，可取值0-100
+
+         */
+        
+        .box1 {
+            height: 100px;
+            width: 100px;
+            background-color: rebeccapurple;
+        }
+        
+        .box2 {
+            height: 140px;
+            width: 140px;
+            background-color: rgb(105, 105, 31);
+            position: relative;
+            left: 100px;
+            top: 100px;
+        }
+        
+        .box3 {
+            height: 160px;
+            width: 160px;
+            background-color: rgb(159, 111, 207);
+            /* position: relative; */
+        }
+        
+        .box4 {
+            height: 200px;
+            width: 100px;
+            background-color: rgb(190, 172, 207);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+        
+        .s1 {
+            width: 100px;
+            background-color: antiquewhite;
+            /* position: relative;
+            left: 30px; */
+            position: absolute;
+        }
+        
+        .box5 {
+            height: 160px;
+            width: 160px;
+            background-color: blue;
+            position: relative;
+            opacity: 0.5;
+            
+        }
+        
+        .box6 {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            position: fixed;
+            left: 30px;
+            top: 30px;
+            /* opacity: 0.5; */
+        }
+    </style>
+</head>
+
+<body style="height: 5000px;">
+
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3">
+        <div class="box4"></div>
+    </div>
+
+    <span class="s1">this is span</span>
+
+    <hr>
+
+    <div class="box5">
+        box5
+        <div class="box6">box6</div>
+    </div>
+
+
+
+</body>
+
+</html>

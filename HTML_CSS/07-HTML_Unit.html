@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Unit</title>
+    <meta charset="UTF-8" />
+
+
+    <style type="text/css">
+        .box {
+            width: 30%;
+            height: 300px;
+            background-color: rebeccapurple;
+        }
+        
+        .box1 {
+            font-size: 100px;
+            width: 1em;
+            height: 100px;
+            background-color: #abc;
+        }
+        
+        p.p1 {
+            color: blue;
+            font-size: 30px;
+            font-family: 'Courier New', Courier, monospace;
+            font-style: italic;
+            font-weight: bold;
+        }
+        
+        p.p2 {
+            font: italic small-caps bold 60px 'Courier New';
+        }
+        
+        .dd1,
+        .dd2,
+        .dd3,
+        .dd4,
+        .dd5 {
+            font-size: 30px;
+        }
+        
+        dd.dd1 {
+            font-family: serif;
+        }
+        
+        dd.dd2 {
+            font-family: sans-serif;
+        }
+        
+        dd.dd3 {
+            font-family: monospace;
+        }
+        
+        dd.dd4 {
+            font-family: cursive;
+        }
+        
+        dd.dd5 {
+            font-family: fantasy;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <p>长度单位 px-像素。可以使用个百分比，父元素长度改变子元素也会变。</p>
+        <p>em是响度当前元素字体大小来计算的 1em=1font-size </p>
+        <div class="box1"></div>
+    </div>
+
+
+
+    <div>
+        <p>
+            颜色 background-color: #ff0000; rgb(0, 255, 100); rgb(0, 255, 100); rgb(0%, 80%, 100%); <br> #abc = #aabbcc
+        </p>
+    </div>
+
+    <div>
+        <p class="p1">
+            color 字体颜色，font-size 字体大小 <br> font-family 同时采用多个字体时，优先使用前一个，没有在下一个
+        </p>
+
+        <dl>
+            <dt>字体分类 5大类</dt>
+            <dd class="dd1">serif 衬线字体</dd>
+            <dd class="dd2">sans-serif 非衬线字体</dd>
+            <dd class="dd3">monospace 等宽字体</dd>
+            <dd class="dd4">cursive 草书字体</dd>
+            <dd class="dd5">fantasy 魔幻字体</dd>
+        </dl>
+
+        <p>一般将字体大类放在font-family的最后一个，要是前面的字体都找不到，这个兜底的</p>
+
+        <p>font-style: italic; 文字斜体。可选 normal oblique ..</p>
+        <p>font-weight: bold;设置加粗效果 100-900之间9个值。系统可能没有，达不到想要效果</p>
+        <p class="p2">字体样式设置在一起 abcdefgHIJKL，字体必须是最后一个 字体大小是倒数第二个</p>
+    </div>
+
+
+    <div>
+        <p>line-height:40px; 行高。可以写 100% 相对于 font-size 来计算的。</p>
+        <p>行高也可在 font 中设置，font:20px/30px; 字体20行高30</p>
+        <p>若font没写行高会用默认的行高，line-height要写在font之后才起作用</p>
+        <p>text-transform 设置文本大小写。text-align 文本对齐。text-indent 文本缩进 正负值</p>
+    </div>
+
+</body>
+
+</html>

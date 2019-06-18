@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Btn Table</title>
+    <meta charset="UTF-8" />
+
+
+    <style type="text/css">
+        .btn:link {
+            display: block;
+            width: 31px;
+            height: 28px;
+            background-image: url(Resource/001.png);
+            background-position: -2px 0px;
+        }
+        
+        .btn:hover {
+            background-image: url(Resource/001.png);
+            background-position: -33px 0px;
+        }
+        
+        .btn:active {
+            background-image: url(Resource/001.png);
+            background-position: -66px 0px;
+        }
+        /* 以前表格更多是用来对页面布局，但是这种方式早已被css所淘汰 */
+        
+        .table1 {
+            width: 300px;
+            margin: 0 auto;
+            /* border: 1px solid black; */
+            /* border-spacing: 0px; table 和 td 边框之间有默认的距离*/
+            /* 用来设置表格边框合并 border-spacing 自动失效*/
+            border-collapse: collapse;
+        }
+        
+        .table1 td,
+        th {
+            border: 1px solid black;
+        }
+        
+        .table1 tr:nth-child(even) {
+            background-color: aquamarine;
+        }
+        
+        .table1 tr:hover {
+            background-color: brown;
+        }
+        /* 
+        thead内容永远显示在表格头部
+        tbody中间
+        tfoot底部
+        如果表格中没写 tbody 浏览器会自动在表格中添加tbody，并且所有tr都放在tbody中
+        tr并不是table的子元素，而是tbody的子元素，
+        通过 table > tr 无法选中行需要使用 tbody > tr
+         */
+    </style>
+</head>
+
+<body>
+
+    <a href="#" class="btn"></a>
+
+    <!-- <table border="1" width="40%" align="center"> -->
+    <table class="table1">
+        <tr>
+            <th>item1</th>
+            <th>item2</th>
+            <th>item3</th>
+            <th>item4</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td rowspan="2">3</td>
+            <td>4</td>
+        </tr>
+
+        <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+        </tr>
+
+        <tr>
+            <td>A</td>
+            <td colspan="2">B</td>
+            <td>C</td>
+        </tr>
+        <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>d</td>
+        </tr>
+    </table>
+
+    <br>
+    <hr>
+    <br>
+
+    <table class="table2">
+
+        <thead>
+            <tr>
+                <td>日期</td>
+                <td>收入</td>
+                <td>支出</td>
+                <td>合计</td>
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>合计</td>
+                <td>100</td>
+            </tr>
+        </tfoot>
+
+        <tbody>
+            <tr>
+                <td>100</td>
+                <td>200</td>
+                <td>300</td>
+                <td>400</td>
+            </tr>
+
+            <tr>
+                <td>100</td>
+                <td>200</td>
+                <td>300</td>
+                <td>400</td>
+            </tr>
+
+            <tr>
+                <td>100</td>
+                <td>200</td>
+                <td>300</td>
+                <td>400</td>
+            </tr>
+
+            <tr>
+                <td>100</td>
+                <td>200</td>
+                <td>300</td>
+                <td>400</td>
+            </tr>
+
+            <tr>
+                <td>100</td>
+                <td>200</td>
+                <td>300</td>
+                <td>400</td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
+</body>
+
+
+
+</html>

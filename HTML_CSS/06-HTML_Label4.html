@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Form</title>
+    <meta charset="UTF-8" />
+
+
+    <style type="text/css">
+        body {
+            background-color: antiquewhite;
+            /* 在样式前添加一个下划线，这样只有IE6及以下的浏览器才可以识别 */
+            _background-color: yellow;
+            /* 在样式前添加 *，这样只有IE7及以下的浏览器才可以识别 */
+            *background-color: red;
+            /* 在样式后添加 \0，这样只有IE8及以上的浏览器才可以识别 */
+            background-color: red\0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>ie6中对图片格式png24支持度不高，会导致透明效果无法正常显示</p>
+    <p>1、可以使用png8替代，但是图片清晰度会有所下降</p>
+    <p>2、使用 js 来解决，引入外部 js 文件</p>
+
+
+    <hr>
+
+    <p>CSS Hack 指一个特殊的代码，只在某些浏览器中可以识别。能不用就不要用</p>
+    <p>条件 Hack </p>
+
+    <!-- [if IE 6] >
+
+    <![endif] -->
+
+</body>
+
+
+
+</html>

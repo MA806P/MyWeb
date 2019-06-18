@@ -1,0 +1,89 @@
+<!doctype html>
+<!--h5 的文档声明，当前网页是按照HTML5标准编写的。防止进入怪异模式导致解析页面无法正常显示。-->
+<html>
+
+<head>
+
+
+    <title>Hellow World</title>
+
+    <!-- 
+        meta 用来设置网页的一些元数据，字符集、关键字、简介,会影响搜索引擎的排名。 
+        meta 自结束标签  可在开始标签中添加一个 /
+        可以用来做请求的重定向
+    -->
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML,CSS,..." />
+    <meta name="description" content="This is description" />
+    <!-- <meta http-equiv="refresh" content="2;url=http://www.baidu.com" /> -->
+
+</head>
+
+<body>
+    <h1>This is
+        <font color="red">start</font> of learning web. </h1>
+
+    <!--浏览器解析到实体时，会自动将实体转换为对应的字符-->
+    <p>实体：a &lt; b &gt; c, 空&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格, &copy;版权符</p>
+
+    <hr>
+
+    <!--
+        src:图片路径，相对路径，../返回上一级目录，返回几级目录就写几个 ../../Resource/
+        alt:在图片没有显示出时的描述，搜索引擎可以用来识别图片
+        宽高如果只设置一个，另一个也会同时等比例调整大小。同时指定宽高，按照指定的来
+    -->
+    <img src="Resource/img_01.jpg" alt="this is image" width="80px" />
+
+    <!-- 
+        使用内联框架，可以引入一个外部的页面。开发中不推荐使用，不会被搜索引擎检索 
+        <iframe src="xxx.html" width="22" height="22" name="xxx"></iframe>
+    -->
+
+
+    <br><br>
+    <!-- 
+        a 的 target 属性： 
+        _self-表示在当前窗口中打开
+        _blank-在新的窗口中打开连接
+        href: 跳转到当前页面的某个位置 #+id
+     -->
+    <a href="Resource/img_02.jpg" target="_blank">This is image</a>
+    <br>
+    <a href="Resource/img_03.jpg" target="tony">Open in iframe</a>
+    <br>
+    <iframe src="Resource/img_04.jpg" name="tony" width="400" height="300"></iframe>
+
+    <br><br>
+
+    <a id="bottom" href="#">去顶部</a>
+    <br>
+    <a href="mailto:123@123.com">电子邮件</a>
+
+</body>
+
+</html>
+
+
+
+<!--
+    乱码问题：产生乱码原因，编码和解码采用的字符集不同。
+    字符集：编码和解码所采用的规则，常见的字符集 ASCII  ISO-8859-1  GB2312  UTF-8(万国码支持所有文字)
+    需要告诉浏览器，网络所采用的编码字符集，<meta charset="UTF-8"/> 
+-->
+
+<!--
+    1、<h1></h1> 标题标签，6级标题标签 h1--h6 重要性依次降低，h1影响到搜索引擎中的排名，页面只能写一个h1，h3以后的基本不用
+    2、<p></p> 段落标签，一个段落，默认独占一行，段之间有间距
+    3、<br> 字符间再多的空格、换行，都会当成一个空格解析。br是一个自结束标签。
+    4、<hr> 水平线，自结束标签。 
+    5、JPEG--图片支持的颜色较多，可压缩，不支持透明
+        GIF--支持的颜色少，支持简单的透明，支持动态图
+        PNG--支持颜色多，支持复杂的透明图片
+
+    6、HTML 不区分大小写，一般小写。
+    7、标签结构要完整。要么成对出现，要么自结束标签。浏览器尽最大努力解析标签。
+    8、注释不能嵌套。标签可以嵌套，但是不能交叉嵌套。
+    9、标签的属性必须有值，且值必须加引号，双引号单引号都可。
+
+-->

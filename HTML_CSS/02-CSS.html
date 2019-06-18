@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CSS</title>
+    <meta charset="UTF-8" />
+
+
+    <style type="text/css">
+        /* css 的注释这样写 
+            p-选择器
+            {}-声明块，键值对结构
+
+            id 选择器。通过id选中唯一的元素
+            为元素设置class属性，class属性可以重复，可以设置多个class属性空格隔开
+        */
+        
+        p {
+            color: red;
+            font-size: 20px
+        }
+        
+        #pId1 {
+            color: blue;
+            font-size: 10px;
+        }
+        
+        .pClass2 {
+            color: yellow;
+        }
+        
+        .pClass3 {
+            font-size: 30px;
+        }
+        /* 
+        选择器分组
+        #pId1, .pClass3, h4 {
+            background-color: gray;
+        } */
+        /*
+        通配选择器 *
+        * { background-color: lightblue; }
+        */
+        /* 
+        复合选择器，同时满足多个样式。clas
+        */
+        
+        span.sClass4 {
+            background-color: aliceblue;
+        }
+    </style>
+
+    <!-- <link rel="stylesheet" type="text/css" href="02-Style.css" /> -->
+
+</head>
+
+<body>
+    <!-- 
+        CSS
+        1、内联样式 
+        <p style="color: red;font-size: 20px"> This is start of learning web. </p>
+         2、写在头部
+         3、外部 css 文件中, link 引入，利用浏览器缓存 加快加载速度
+    -->
+    <h3>悯农</h3>
+    <p> 锄禾日当午，</p>
+    <p id="pId1"> 汗滴禾下土。 </p>
+    <p class="pClass2"> 谁知盘中餐，</p>
+    <p class="pClass2 pClass3">粒粒皆辛苦。 </p>
+
+    <h4> 锄禾日当午，</h4>
+    <span class="sClass4"> 锄禾日当午，</span>
+
+
+    <br/>
+    <hr/>
+    <br/>
+
+    <!-- 
+        块元素和内联元素
+
+        div 是一个块元素。
+            块元素会独占一行，无论内容有多少。p  h1 h2... 都是块元素
+            div 没有任何语义，就是一个纯粹的块元素。主要用来对页面进行布局的。
+
+        span 是一个内联元素，行内元素。
+            行内元素只占自身大小的元素，不会占用一行。a  img  iframe  span ...
+            span 没有任何语义，专门用来选中文字，然后为文字来设置样式。
+
+        一般情况下只使用块元素去包含内联元素，不会使用内联元素去包含一个块元素。
+        a 可以包含任意元素，除了它本身。
+        p 不可以包含任何其他的块元素
+     -->
+
+    <div style="background-color: yellow;width: 200px;">
+        This is a div.
+        <span>This is text.</span>
+    </div>
+
+    <span>This is text.</span>
+    <span>This is text.</span>
+
+    <a href="#">
+        <div style="background-color: red;width: 80px;"> This is a div, can click.</div>
+    </a>
+
+
+</body>
+
+</html>

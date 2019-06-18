@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>JS Hello World</title>
+    <script type="text/javascript">
+        //alert("alert hello"); //弹出警告框
+        document.write("document hello"); //可向body中输入内容
+        console.log("console hello"); //控制台输出内容
+        //顺序执行语句
+    </script>
+
+    <!-- script 用于引入外部文件，就不能在里面写代码了，浏览器会忽略 -->
+    <script src="js.js"></script>
+
+</head>
+
+<body>
+
+    <p>js 代码可以写到 onclick 属性中，点击执行 js 代码。不方便维护，不推荐使用</p>
+    <button onclick="alert('button click')">button</button>
+    <a href="javascript:alert('a touch');"> link1 </a>
+    <a href="javascript:;"> link2 </a>
+
+</body>
+
+</html>

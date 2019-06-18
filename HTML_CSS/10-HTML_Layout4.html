@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Layout</title>
+    <meta charset="utf-8" />
+</head>
+
+
+<!-- 
+    frameset框架集 和 内联框架iframe作用类似，用于在页面中引入其他外部页面 
+    frameset可以同时引入多个页面 iframe只能引入一个，h5推荐使用frameset 不推荐iframe
+
+    frameset 不能和 body 出现在同一个页面中
+
+    不推荐使用，frameset iframe 一样不会别搜索引擎检索。
+    不能有自己内容，只能引入其他页面，引入多个页面就需要发送几次请求。
+
+-->
+
+<frameset cols="30%, * , 30%">
+    <frame scr="10-HTML_Layout2.html" />
+    <frame scr="10-HTML_Layout2.html" />
+    <frameset rows="30%, * , 30%">
+        <frame scr="10-HTML_Layout2.html" />
+        <frame scr="10-HTML_Layout2.html" />
+        <frame scr="10-HTML_Layout2.html">
+    </frameset>
+</frameset>
+
+
+</html>

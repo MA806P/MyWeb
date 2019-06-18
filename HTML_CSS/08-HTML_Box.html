@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Box-padding border margin</title>
+    <meta charset="UTF-8" />
+
+    <style type="text/css">
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            border-width: 20px;
+            /* border-width: 10px 30px 60px 200px; 上 右 下 左 */
+            /* border-width: 10px 30px 60px; 上 左右 下*/
+            /* border-width: 10px 30px; 上下  左右 */
+            /* border-color: aqua; */
+            border-color: red blue green;
+            /* border-style: solid;  solid实线 dotted点 dashed虚线*/
+            border-style: solid dotted dashed;
+        }
+        
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            border-style: dashed;
+            margin: 40px;
+            /* 
+            margin-left: -50px;
+            margin-left: auto; 
+            auto一般只设置水平方向的margin，垂直就是为0，如设置左右将外边距设置为最大
+            同时设置左右为 auto 则水平居中 
+
+            相邻的垂直外边距重叠，
+            如 box1设置margin-bottom，box2设置margin-top，则上下间距为设置的最大的那个，不是两个的和
+            
+            如父子元素的垂直外边距相邻了，则子元素外边框会设置给父元素
+            父子之间有padding border 就不相邻了，就不会设置给父元素
+
+            
+            */
+        }
+        
+        .box3 {
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            border: dashed red 20px;
+            border-top: none;
+        }
+        
+        .box4 {
+            width: 200px;
+            height: 200px;
+            background-color: antiquewhite;
+            border: dashed 10px red;
+            /* padding: 60px; */
+            padding-bottom: 60px;
+            /* 如果子元素的内容超出了父元素的大小，内容溢出，可通过overflow设置父元素如何处理溢出内容 
+            overflow: visible; 默认值，对溢出内容不做处理
+            hidden 溢出内容会被修剪，不显示
+            scroll 溢出内容会滚动显示，滚动条会一直显示，无论内容是否溢出
+            auto 溢出内容是否需要滚动条，需要就有
+            */
+            overflow: auto;
+        }
+        
+        .box5 {
+            width: 200px;
+            height: 500px;
+            background-color: cornflowerblue;
+            margin-top: 20px;
+        }
+        
+        p.p1 {
+            margin: 0;
+            padding: 0;
+        }
+        
+        span.s1 {
+            background-color: aquamarine;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border: 10px blue solid;
+        }
+        
+        a {
+            background-color: antiquewhite;
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <p>this is p</p>
+
+    <hr>
+
+    <div class="box4">
+        <p>overflow: auto 显示溢出内容</p>
+        <div class="box5"></div>
+    </div>
+    <p class="p1">this is p</p>
+    <p>浏览器有默认的 margin padding 样式</p>
+
+
+    <hr>
+
+    <p>内联元素的边距，和块元素的边距设置不一样</p>
+    <p>内联元素不能设置 width height。可以设置水平方向的边距 padding-left，垂直方向边距不会影响页面布局 </p>
+    <p>内联元素 margin 只支持水平方向，不支持垂直方向</p>
+
+    <span class="s1">span span</span>
+    <div style="width: 30px; height:30px; background-color: antiquewhite;"></div>
+
+    <hr>
+
+    <ul>
+        <li>可以通过 display 样式可以修改元素的类型</li>
+        <li>inline作为内联样式显示</li>
+        <li>block作为块元素显示</li>
+        <li>inline-block 既有行内元素的特点又有块元素的特点。既可设置宽高又不会独占一行</li>
+        <li>none 不显示元素，不占据页面的位置</li>
+        <li></li>
+        <li>visibility:hidden 不显示，但是还占据位置</li>
+    </ul>
+    <a href="#">一块超链接</a> <span>span</span>
+
+</body>
+
+</html>

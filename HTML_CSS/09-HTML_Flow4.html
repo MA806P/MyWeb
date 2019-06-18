@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Box-padding border margin</title>
+    <meta charset="UTF-8" />
+
+    <style type="text/css">
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(70, 45, 13);
+        }
+        
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            margin-top: 40px;
+        }
+        
+        .box3 {
+            border: 8px red solid;
+            background-color: rgb(252, 143, 0);
+        }
+        
+        .box4 {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(41, 226, 195);
+            float: left;
+        }
+        /* 
+        解决父子外边距重叠 
+        .box1:before {
+            content: "";
+            display: table;
+        }
+        */
+        /* 
+        解决父元素高度塌陷 
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        */
+        /* 修改后的 clearfix 即可解决高度塌陷，又可确保父子垂直外边距不会重叠 */
+        
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box1 clearfix">
+        <div class="box2"></div>
+    </div>
+
+    <div class="box3 clearfix">
+        <div class="box4"></div>
+    </div>
+
+</body>
+
+
+</html>

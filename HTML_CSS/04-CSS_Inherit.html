@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CSS</title>
+    <meta charset="UTF-8" />
+
+
+    <style type="text/css">
+        /* 
+        p:first-child，既是p元素，又是父元素的第一个子元素 
+        body>p:first-child，指定body的第一个子元素，起作用
+
+        body>p:first-child {
+            background-color: aqua;
+        }
+
+        p:last-child 最后一个子元素
+        p:nth-child(1) 可以选中任意位置的子元素，括号里的数字决定
+        p:nth-child(even)  even表示偶数位置，odd表示奇数位置
+
+        p:first-of-type 是在当前类型的子元素中排列
+        :first-child 是在所有子元素中排列
+
+        p:nth-child(3) {
+            background-color: aqua;
+        }
+        
+        p:first-of-type {
+            background-color: brown;
+        }
+
+        span+p , span后的一个p元素，可以选中一个元素后紧挨着的指定兄弟元素
+        span~p ，选中后面的所有兄弟元素
+        span~p {
+            background-color: aqua;
+        }
+
+        p:not(.hello) 选中所有p元素，除了括号里面的
+
+        */
+        
+        p:not(.hello) {
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <span>ths is span</span>
+    <p>this is a text </p>
+    <p class="hello">this is a text </p>
+    <p>this is a text </p>
+
+    <div>
+        <!-- 父元素div，p是父元素的第一个子元素，上面 p:first-child 会起作用 -->
+        <p>this is a text </p>
+    </div>
+</body>
+
+</html>

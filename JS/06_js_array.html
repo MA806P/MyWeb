@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JS Hello World</title>
+    <script type="text/javascript">
+        /**
+         * 数组 Array 也是一个对象
+         * 尽量不要创建非连续的数组
+         */
+
+        /*
+        var arr = new Array();
+        arr[0] = 1;
+        arr[1] = 2;
+        arr[10] = 11;
+        console.log(arr[0], arr[8], arr.length); //1 undefined 11
+        arr.length = 16;
+        console.log(arr[12]); //undefined
+        arr.length = 1; //改小了，则之前的元素会被删除
+        console.log(arr[1]); //undefined
+        */
+
+
+
+        //字面量创建数组
+        var arr = [1, 2, 3, 4, 5]; //new Array(1, 2, 3);
+        console.log(typeof arr, arr); //object
+
+        var arr2 = new Array(2); //创建一个长度为2的空数组
+        console.log(arr2);
+
+        //数组中元素可以是任意数据类型，数组里也可以放数组 二位数组
+        arr2 = ['hello', 1, true, null, undefined, {
+                name: '123'
+            }, function() {
+                alert('hello');
+            },
+            [1, 2, 3]
+        ];
+        console.log(arr2, arr2[5].name);
+
+        //push()向数组中最后添加一个或多个元素，并返回数组的长度
+        arr.push('111', '222');
+        console.log(arr); // [1, 2, 3, 4, 5, "111", "222"]
+        //pop()删除数组最后一个元素
+        console.log(arr.pop(), arr); //222 [1, 2, 3, 4, 5, "111"]
+        //unshift()向数组开头添加一个或多个元素，并返回数组长度
+        arr.unshift(0, '0');
+        console.log(arr); //[0, "0", 1, 2, 3, 4, 5, "111"]
+        //删除头一个
+        console.log(arr.shift(), arr); //0  ["0", 1, 2, 3, 4, 5, "111"]
+
+
+        // forEach() 需要函数作为参数，回调函数，浏览器来调用，数组有几个元素函数会调用几次
+        // 三个参数，元素值，元素下标，数组对象
+        // IE 8 及以下不支持该方法
+        arr.forEach(function(value, index, obj) {
+            console.log(index + '=' + value);
+        });
+
+
+        //slice(),两个参数，开始位置和结束位置,包含开始不包含结束, 不会影响原数组
+        //只写一个参数 开始参数，从开始一直到最后
+        //如果传递一个负数，从后往前计算
+        // arr=["0", 1, 2, 3, 4, 5, "111"]
+        console.log(arr.slice(2, 4), arr.slice(4)); //[2,3] [4, 5, "111"] 
+        console.log(arr.slice(-2)); //[5, "111"]
+
+        //splice() 删除数组中指定元素，参数，1开始位置 2删除的数量 3及以后插入的元素，会影响到原数组
+        console.log(arr.splice(1, 1), arr.splice(1, 1, 'a', 'b'), arr); //[1]  ["0", "a", "b", 3, 4, 5, "111"]
+
+
+        //数组去重
+        var arrTest = [1, 2, 3, 2, 2, 2, 4, 3, 5, 1, 1, 6, 7];
+        for (var i = 0; i < arrTest.length; i++) {
+            for (var j = i + 1; j < arrTest.length; j++) {
+                if (arrTest[i] == arrTest[j]) {
+                    arrTest.splice(j, 1);
+                    j--;
+                }
+            }
+        }
+        console.log(arrTest); //[1, 2, 3, 4, 5, 6, 7]
+
+
+        //concat 合并数组，不会影响原数组
+        var a = [1, 2, 3];
+        console.log(a.concat([4, 5], '6'), a); // [1, 2, 3, 4, 5, '6']  [1, 2, 3]
+
+        //join 将数组转换为一个字符串，参数是连接符，不传参数默认逗号，不会影响原数组
+        console.log(a.join('-')); //1-2-3
+
+        //reverse 反转数组，会影响原数组
+        console.log(a.reverse(), a); //[3, 2, 1]  [3, 2, 1]
+
+        //sort() 数组排序 Unicode码进行排，会影响原数组
+        //可加回调函数，根据回调函数返回值，进行排序，大于0 交换位置，小于等于0位置不变
+        console.log([3, 4, 6, 1, 11].sort()); //[1, 11, 3, 4, 6] 注意11
+        a.sort(function(a1, a2) {
+            return a2 - a1;
+        });
+        console.log(a); //[3, 2, 1]
+    </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>

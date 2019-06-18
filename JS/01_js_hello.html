@@ -9,6 +9,45 @@
         document.write("document hello"); //可向body中输入内容
         console.log("console hello"); //控制台输出内容
         //顺序执行语句
+
+        var 锄禾 = 789;
+        锄禾 = "hello";
+        console.log(锄禾);
+
+        var a = 123;
+        var b = "123";
+        console.log(a, typeof a);
+        console.log(b, typeof b);
+
+        var c = Infinity;
+        var d = NaN;
+        console.log(Number.MAX_VALUE, typeof c, typeof d);
+
+        var e = 123;
+        var f = null;
+        console.log(e.toString(), String(f), Number('12a'), Number(' '), Number(false), Number(undefined), Number(null));
+
+
+        console.log(parseInt('12a34'), parseInt('12.456a34'), parseFloat('12.34ab56'));
+
+        var g = 070;
+        console.log(parseInt(a, 10));
+
+        console.log(Boolean('abc'), Boolean(' '), Boolean(''), Boolean(undefined), Boolean(null));
+
+
+
+        console.log('abc' + 1, 123 + "1", true + 1, true + "123", 1 + "", null + 1, NaN + 1);
+        console.log(1 + 2 + '3', '1' + 2 + 3);
+        console.log(100 - '1', 2 * '2', 2 * null, 2 * undefined, 2 * NaN);
+        console.log(a++, ++a);
+
+        var i = 20;
+        var r = i++ + ++i + i;
+        console.log(r, i, !!'abc', '1' < 5, '2' < '4', '\u0031');
+
+        console.log('1' == 1, true == '1', null == false, null == null, NaN == NaN, 'aaaa', null == undefined, undefined == undefined);
+        console.log('1' === 1, true === '1', null === false, null === null, NaN === NaN, 'bbbb', null === undefined, undefined === undefined);
     </script>
 
     <!-- script 用于引入外部文件，就不能在里面写代码了，浏览器会忽略 -->
@@ -20,9 +59,74 @@
 
     <p>js 代码可以写到 onclick 属性中，点击执行 js 代码。不方便维护，不推荐使用</p>
     <button onclick="alert('button click')">button</button>
-    <a href="javascript:alert('a touch');"> link1 </a>
+    <a href="javascript: var a = prompt('请输入：'); alert('输入 ' + a);"> link1 </a>
     <a href="javascript:;"> link2 </a>
 
+    <p>js 严格区分大小写，每条语句以;分号结尾，如果不写分号，浏览器会自动添加，但是会消耗资源，浏览器可能会错加分号，所以必须写。</p>
+    <p>js 会忽略空格和换行，可以对代码进行格式化。</p>
+    <dl>
+        <dt>js 中所有的可以由我们命名的都可以成为是标识符，变量名、函数名、属性名 </dt>
+        <dd>标识符不能以数字开头，不能是ES中的关键字或保留字</dd>
+        <dd>js 保存标识符采用Unicode编码，理论上所有的utf-8含有的内容都可以作为标识符</dd>
+
+        <dt>js 中有六种数据类型</dt>
+        <dd>String Number Boolean Null Undefined(基本数据类型) Object(引用数据类型)</dd>
+
+        <dt>String</dt>
+        <dd>String 单引号 双引号都行，但是不要混着用，引号不能嵌套 双引号里不能用双引号 单引号里也不能使用单引号，可用\转义</dd>
+        <dd>var a = "he say:\"hello a \t bc\" "</dd>
+
+        <dt>Number</dt>
+        <dd>console.log(Number.MAX_VALUE); 超过了最大值返回一个 Infinity 表示无穷 也是Number类型的</dd>
+        <dd>var a = NaN; 也是Number类型的</dd>
+
+        <dt>Null</dt>
+        <dd>Null 类型的值只有一个，就是null，用来表示一个为空的对象。</dd>
+        <dd>var a = null; typeof a = object </dd>
+        <dd>Undefined 类型值就一个 undefined </dd>
+
+        <dt>类型转换</dt>
+        <dd>.toString() 转换成 String， null undefined 不能用 toString 方法，使用 String(null)</dd>
+        <dd>parseInt('12a34') = 12;parseInt('12.45a34') = 12;</dd>
+        <dd> Number('123') = 123; Number('12a') = NaN; </dd>
+        <dd>Number(' ') = 0; Number(false) = 0; Number(undefined) = NaN; Number(null) = 0;</dd>
+        <dd>Boolean(123) = true; Boolean('abc')=true, Boolean(' ')=true, Boolean('')=false, Boolean(undefined)=false, Boolean(null)=false</dd>
+
+        <dt>进制</dt>
+        <dd>16进制 0x 开头； 8进制 0 开头；</dd>
+        <dd>var a = 070; parseInt(a, 10) = 56; 第二个参数以10机制转换，8进制转换成10进制</dd>
+
+        <dt>运算符</dt>
+        <dd>'abc' + 1 = 'abc1'; 123 + "1" = '1231'; 1+''='1'; </dd>
+        <dd>NaN+任何值=NaN; true + 1 = 2, true + "123" = "true123", null + 1 = 1, </dd>
+        <dd>1 + 2 + '3' = '33'; '1'+2+3='123';</dd>
+        <dd>100 - '1' = 99;</dd>
+        <dd>2 * '2'=4, 2 * null=0, 2 * undefined=NaN, 2 * NaN=NaN</dd>
+        <dd>可以 -0 *1 /1 进行转换为 Number </dd>
+
+        <dt>自增自减</dt>
+        <dd>a++ ++a, 变量a的值都会立即+1，a++的值=a， ++a的值 = a+1</dd>
+        <dd>var d=20; var r = d++ + ++d + d; r=20+22+22=64, d=22</dd>
+        <dd>var d=20; d = d++; d是20</dd>
+
+        <dt>逻辑运算</dt>
+        <dd>var a = 22; !!a = true; 这种方法可以隐式转换成Boolean类型。!!'abc' = true </dd>
+        <dd>'1' &lt; 5 true, '4' &gt; '2' true, 两个都是字符串比较，不会将其转换为数字，会分别比较字符串中的Unicode编码</dd>
+
+        <dt>Unicode编码</dt>
+        <dd>输出Unicode码，'\u0031'</dd>
+        <dd>&#49</dd>
+
+
+        <dt>相等运算符</dt>
+        <dd>== 如果比较的值类型不同，会自动进行类型转换，转换成相同的类型。</dd>
+        <dd>NaN 不和任何值相等，包括它本身 isNaN()函数检查值是否NaN</dd>
+        <dd> '1' == 1 true, true == '1' true, null == false false, </dd>
+        <dd>null == null true, NaN == NaN false, null == undefined true, undefined == undefined true</dd>
+        <dd> === 全等，不会做类型转换，null === undefined false, undefined === undefined true, null===null true, </dd>
+
+
+    </dl>
 </body>
 
 </html>

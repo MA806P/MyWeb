@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JS Hello World</title>
+    <script type="text/javascript">
+        /**
+         * 构造函数和普通函数，调用方式不同，普通直接调用，而构造函数需要使用new关键字来调用
+         *  构造函数调用：
+         * 1、立即创建一个新的对象
+         * 2、将新建的对象设置为函数中this
+         * 3、逐行执行函数中代码
+         * 4、新建的对象返回值返回
+         * */
+
+
+        function sayFunc() {
+            console.log('hello ' + this.name);
+        }
+
+        function Person(name) {
+            this.name = name;
+            //this.say = sayFunc; //使用外面的函数，不用每次都创建，共享一个方法
+            //function() { console.log('hello ' + this.name); };
+        }
+        Person.prototype.say = function() {
+            console.log('hello ' + this.name);
+        };
+        var per = new Person('123');
+        per.say();
+
+        console.log(per instanceof Person); //true
+        var per2 = new Person('456');
+        console.log(per.say == per2.say); //true
+
+
+
+
+        //原型对象
+        //创建的函数，解析器都会向函数中添加一个属性 prototype ,这个属性对应一个对象，原型对象
+        //函数作为普通函数调用 prototype 没用作用。当以构造行数调用时才起作用，通过 __proto__ 获取
+        //原型对象相当于公共的区域，所有同一个类的实例都可以访问这个区域，可以将对象公共内容设置到原型对象中
+        //当访问对象一个属性或方法时，先在自身中找，如没有则去原型对象中找
+
+        function MyClass() {
+
+        }
+        MyClass.prototype.a = 123;
+        MyClass.prototype.say = function() {
+            console.log('hello');
+        };
+
+        var mc1 = new MyClass();
+        var mc2 = new MyClass();
+        console.log(mc1.__proto__ == mc2.__proto__, mc1.a, mc2.a); //true 123 123
+        mc1.say();
+
+
+        console.log(mc2.hasOwnProperty('a'), mc2.__proto__.__proto__.hasOwnProperty('hasOwnProperty')); //false true 
+        //检查自身中是否有该属性，原型的原型，原型也是对象
+
+        console.log(mc1.toString()); //[object Object]
+        MyClass.prototype.toString = function() {
+            return 'MyClass ' + this.a;
+        };
+        console.log(mc1.toString()); //MyClass 123
+
+
+        //****************************
+
+        /**
+         * 垃圾回收 GC
+         * 当对象没有任何变量或属性对它进行引用，无法操作该对象，这种对象就是垃圾
+         * js中有自动的垃圾回收机制，会自动将这些垃圾从内存中销毁
+         * 不需要也不能进行垃圾回收的操作，将不用的对象设置null即可
+         */
+    </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>

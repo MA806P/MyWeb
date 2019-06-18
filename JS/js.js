@@ -1,1 +1,2 @@
-alert('外部js');
+// alert('outside js');
+document.write("document hello outside");

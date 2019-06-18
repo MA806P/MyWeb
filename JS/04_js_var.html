@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JS Hello World</title>
+    <script type="text/javascript">
+        var a = 10;
+        // function func() {};
+        // func(); // window.func();一样的
+
+        console.log(window.a); //10
+
+
+        //函数声明提前，会在所有代码执行之前就被创建，可以在函数声明前来调用函数
+        //使用函数表达式创建的函数不会被声明提前
+        func1();
+
+        function func1() {
+            console.log('func1');
+        };
+
+
+
+        /*
+        解析器在调用函数每次都会想函数内部传递一个隐含的参数，this，指向一个对象
+        这个对象称为函数指向的上下文对象，根据调用方式不同，this指向不同的对象
+        */
+        function func2() {
+            console.log('func2 ' + this.name);
+            console.log(this);
+        };
+        func2(); //window.func2(); //this = window
+
+        var obj = {
+            name: '123',
+            say: func2
+        };
+        obj.say(); //this=obj
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <dl>
+        <dt>作用域</dt>
+        <dd>全局作用域</dd>
+        <dd>函数作用域</dd>
+        <dd> </dd>
+
+        <dt>全局作用域</dt>
+        <dd>在全局作用域中有一个全局对象 window，代表的是一个浏览器的窗口</dd>
+        <dd>在全局作用域中，创建的变量都会作为 window 对象的属性保存</dd>
+
+        <dt>函数作用域</dt>
+        <dd>在函数作用域操作一个变量时，会先在自身作用域中寻找，如果有就直接使用，如果没有去上一级找</dd>
+
+
+    </dl>
+
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>DOM</title>
+    <style type="text/css">
+        .divImg {
+            width: 310px;
+            height: 300px;
+            text-align: center;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        DOM 文档对象模型，js通过DOM对HTML进行操作
+         节点，是构成网页的最基本的组成成分，网页每个部分都可称为节点
+         事件，文档或浏览器窗口发生的一些特定的交互瞬间，js HTML 之间的交互是通过事件实现的
+          
+     -->
+
+    <button id="btn1">button</button>
+    <!-- onclick  ondblclick="alert('dubble click')-->
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <button id="btn2">get li</button>
+
+    <br>
+
+    <div class="inner">
+        性别: <input type="radio" name="gender" value="male" />
+        <input type="radio" name="gender" value="female" />
+        <button id="btn3">get li</button>
+    </div>
+
+
+    <ul id="city">
+        <li id="bj">BJ</li>
+        <li id='sh'>SH</li>
+    </ul>
+    <button id="btn4">get li</button>
+    <button id="btn5">button5</button>
+
+    <br>
+    <hr>
+    <br>
+
+    <div class="divImg">
+        <img src="../HTML_CSS/Resource/img_01.jpg" alt="img" />
+        <button id="btnUp">上一张</button>
+        <button id="btnDown">下一张</button>
+    </div>
+
+
+
+    <!-- 
+        浏览器加载页面是按照自上向下顺序加载的
+        如果 script 写到页面的上面，js 代码执行时，页面还没加载 无法获取 DOM 对象
+
+        onload 事件会在整个页面加载完成之后才触发
+        window.onload = function(){ alert('onload');};
+        如果想把 script 写在头部，可以把 js 写在 window.onload 里
+        页面加载完之后再执行
+     -->
+
+
+    <script type="text/javascript">
+        // console.log(document);
+        // var body = document.body;
+        // var html = document.documentElement; //html根标签
+        // var all = document.all; //页面中所有的元素
+        // all = document.getElementsByTagName('*');
+        // var box1 = document.getElementsByClassName('box1'); ie8及以下不支持
+
+        // document.querySelector(‘.box1 div’); //可以根据CSS选择器来查询一个元素节点对象, ie8支持
+        // querySelector 该方法如果有多个， 只会返回第一个
+        // document.querySelectorAll('box1');可以返回多个，返回数组
+
+
+
+
+        var btn1 = document.getElementById('btn1');
+        console.log(btn1, btn1.innerHTML);
+        btn1.innerHTML = 'change btn';
+        btn1.onclick = function() {
+            alert('clicked');
+        };
+
+        var btn2 = document.getElementById('btn2');
+        btn2.onclick = function() {
+            var lis = document.getElementsByTagName('li');
+            for (var i = 0; i < lis.length; i++) {
+                alert(lis[i].innerHTML);
+            }
+        };
+
+        var btn3 = document.getElementById('btn3');
+        btn3.onclick = function() {
+            var genders = document.getElementsByName('gender');
+            for (var i = 0; i < genders.length; i++) {
+                alert(genders[i].value); //元素.属性  class属性不行，用.className代替
+            }
+        };
+
+        var btn4 = document.getElementById('btn4');
+        btn4.onclick = function() {
+            var city = document.getElementById('city');
+            //var lis = city.getElementsByTagName('li');
+            //for (var i = 0; i < lis.length; i++) { alert(lis[i].innerHTML); }
+            var cns = city.childNodes; //获取包括文本解读在内的所有节点
+            //alert(cns.length); //5 空白当成节点
+            //for (var i = 0; i < cns.length; i++) { alert(cns[i]); }
+
+            var cns2 = city.children; // 获取当前元素所有子元素
+            //city.firstChild 获取当前元素的第一个子节点，包括空白节点
+            // city.firstElementChild 获取当前元素的第一个子元素，不支持IE8及以下
+            for (var i = 0; i < cns2.length; i++) {
+                alert(cns2[i].innerHTML);
+            }
+        };
+
+
+        function myClick(idStr, func) {
+            var btn = document.getElementById(idStr);
+            btn.onclick = func;
+        }
+        myClick('btn5', function() {
+            var sh = document.getElementById('sh');
+            var pn = sh.parentNode;
+            //alert(pn.innerHTML);
+            //alert(pn.innerText); //innerText 获取到元素内部的文本内容，会将HTML标签去除
+
+            alert(sh.firstChild.nodeValue);
+            alert(sh.previousElementSibling.innerHTML);
+            //previousSibling 前一个兄弟节点  previousElementSibling兄弟元素 IE8及以下不支持
+
+
+        });
+
+
+        var img = document.getElementsByTagName('img')[0];
+        var imgSrcs = ['../HTML_CSS/Resource/img_01.jpg',
+            '../HTML_CSS/Resource/img_02.jpg',
+            '../HTML_CSS/Resource/img_03.jpg',
+            '../HTML_CSS/Resource/img_04.jpg'
+        ];
+        var index = 0;
+        var btnUp = document.getElementById('btnUp');
+        btnUp.onclick = function() {
+            if (index > 0) {
+                index--;
+                img.src = imgSrcs[index];
+            }
+        };
+
+        var btnDown = document.getElementById('btnDown');
+        btnDown.onclick = function() {
+            if (index < 3) {
+                index++;
+                img.src = imgSrcs[index];
+            }
+        };
+    </script>
+</body>
+
+</html>

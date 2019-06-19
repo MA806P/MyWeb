@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>DOM</title>
+</head>
+
+<body>
+
+    <div class="box1">
+        <ul id='city'>
+            <li id='bj'>bj</li>
+            <li id='gz'>gz</li>
+            <li id='sz'>sz</li>
+        </ul>
+
+        <button id='btn1'>add</button>
+        <button id='btn2'>insert</button>
+        <button id='btn3'>replace</button>
+        <button id='btn4'>delete</button>
+        <button id='btn5'>change</button>
+        <button id='btn6'>button6</button>
+    </div>
+
+    <script type='text/javascript'>
+        function myClick(idName, func) {
+            var btn = document.getElementById(idName);
+            btn.onclick = func;
+        }
+
+        var city = document.getElementById('city');
+        //alert(city.innerHTML);
+
+        //添加子节点
+        myClick('btn1', function() {
+            var li = document.createElement('li');
+            var shText = document.createTextNode('sh');
+            li.appendChild(shText);
+            city.appendChild(li);
+        });
+
+        //插入
+        myClick('btn2', function() {
+            var li = document.createElement('li');
+            var szText = document.createTextNode('sz');
+            li.appendChild(szText);
+            var gzLi = document.getElementById('gz');
+            city.insertBefore(li, gzLi); //(新节点，旧节点)
+        });
+
+
+        //替换
+        myClick('btn3', function() {
+            var li = document.createElement('li');
+            var njText = document.createTextNode('nj');
+            li.appendChild(njText);
+            var gzLi = document.getElementById('gz');
+            city.replaceChild(li, gzLi); //(新节点，旧节点)
+        });
+        //删除
+        myClick('btn4', function() {
+
+            if (confirm('是否删除bj？')) {
+                var bjLi = document.getElementById('bj');
+                //city.removeChild(bj);
+                bjLi.parentNode.removeChild(bjLi);
+            }
+
+        });
+        //修改
+        myClick('btn5', function() {
+            var szLi = document.getElementById('sz');
+            szLi.innerHTML = 'hz';
+        });
+
+        myClick('btn6', function() {
+            //city.innerHTML += '<li>inner html change</li>';
+            var li = document.createElement('li');
+            li.innerHTML = 'inner httml change other';
+            city.appendChild(li);
+        });
+    </script>
+</body>
+
+</html>

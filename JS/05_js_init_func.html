@@ -67,6 +67,54 @@
         console.log(mc1.toString()); //MyClass 123
 
 
+
+
+
+
+
+
+        //****************************
+        /*
+        call() apply() 这两个方法地市函数对象的方法，需要通过函数对象来调用
+        对函数调用这两个都会调用函数执行
+        */
+
+        function funcCall(a, b) {
+            console.log('func call +' + this.name + ' a =' + a + ' b =' + b);
+        }
+        /*
+        funcCall();
+        funcCall.call();
+        funcCall.apply();
+        */
+
+        var objCall1 = {
+            name: 'objCall 1'
+        };
+        funcCall.call(objCall1); //func call +objCall 1 a =undefined b =undefined
+        funcCall.call(objCall1, 2, 3); //func call +objCall 1 a =2 b =3
+        funcCall.apply(objCall1, [2, 3]); //func call +objCall 1 a =2 b =3
+
+
+
+
+        //****************************
+
+        /*
+        调用函数时，浏览器都会传递进两个隐含的参数
+        1、函数上下文对象 this
+        2、封装实参的对象 arguments，类数组对象,可以通过索引来操作数据，获取长度
+            arguments.callee 就是当前正在指向的函数的对象
+        */
+
+        function funcArguments() {
+            //console.log(arguments, arguments instanceof Array); //false
+            console.log(arguments.length, arguments[1]);
+            //console.log(arguments.callee == funcArguments); //true
+        }
+        funcArguments(1, '2'); //2 "2"
+
+
         //****************************
 
         /**

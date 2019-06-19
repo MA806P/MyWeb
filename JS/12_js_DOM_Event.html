@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>DOM CSS</title>
+
+    <style type="text/css">
+        #box1 {
+            background-color: antiquewhite;
+            width: 300px;
+            height: 300px;
+        }
+        
+        #box2 {
+            background-color: antiquewhite;
+            width: 200px;
+            height: 30px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+
+            /*
+            事件对象 event
+            当事件的相应函数触发时，浏览器会事件作为实参传递给响应函数
+            事件对象封装了当前事件的信息，鼠标坐标，滚动方向，键盘按键
+
+            */
+
+            var box1 = document.getElementById('box1');
+            var box2 = document.getElementById('box2');
+            var p = box2.getElementsByTagName('p')[0];
+
+
+            box1.onmousemove = function(event) {
+
+                /*
+                IE8 中响应函数触发时，浏览器不会传递事件对象，
+                IE8及以下，将对象作为 window 对象的属性保存
+                windo.event.clientX 但是这样火狐不兼容
+                */
+                // console.log(event);
+                if (!event) {
+                    event = window.event;
+                }
+                // event = event || window.event;
+                p.innerHTML = 'x =' + event.clientX + ' y=' + event.clientY;
+            };
+
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box1"></div>
+    <br>
+    <div id="box2">
+        <p></p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>example</title>
+    <style type="text/css">
+        .b1 {
+            background-color: antiquewhite;
+            width: 100px;
+            height: 100px;
+        }
+        
+        .b2 {
+            background-color: yellow;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <h1 id="count">0</h1>
+    <button id='btn'>Stop</button>
+    <hr>
+    <br><br>
+
+
+    <button id='btn1'>Change</button>
+    <br><br>
+    <div id="box1" class="b1"></div>
+
+
+
+    <script type='text/javascript'>
+        var count = document.getElementById('count');
+        var i = 1;
+
+        //每隔一段时间调用一次, 返回值 定时器的唯一标识
+        var timer = setInterval(() => {
+            count.innerHTML = i++;
+            i = i % 10;
+        }, 1);
+
+        var btn = document.getElementById('btn');
+        btn.onclick = function() {
+
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            } else {
+                timer = setInterval(() => {
+                    count.innerHTML = i++;
+                    i = i % 10;
+                }, 1);
+            }
+        };
+
+        //延时调用，只执行一次
+        setTimeout(() => {
+            console.log('1');
+        }, 3000);
+
+        var box1 = document.getElementById('box1');
+        var btn1 = document.getElementById('btn1');
+        btn1.onclick = function() {
+            //通过style修改样式，没修改一次浏览器都会重新渲染一次页面，
+            //性能差，修改多个也不方便
+            //box1.style.height = '200px';
+            //通过修改 className 进而修改样式，这样方便可修改多个样式，浏览器渲染一次
+            //box1.className = 'b2';
+            //addClass(box1, 'b2');
+
+            toggleClass(box1, 'b2');
+
+        };
+
+        function addClass(obj, cn) {
+            if (!hasClass(obj, cn)) {
+                obj.className += " " + cn;
+            }
+        }
+
+        function hasClass(obj, cn) {
+            var reg = new RegExp('\\b' + cn + '\\b');
+            return reg.test(obj.className);
+        }
+
+        function removeClass(obj, cn) {
+            var reg = new RegExp('\\b' + cn + '\\b');
+            obj.className = obj.className.replace(reg, '');
+        }
+        //切换一个类，有就删，没有就添加
+        function toggleClass(obj, cn) {
+            if (hasClass(obj, cn)) {
+                removeClass(obj, cn);
+            } else {
+                addClass(obj, cn);
+            }
+        }
+    </script>
+</body>
+
+</html>

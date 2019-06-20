@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>BOM</title>
+</head>
+
+
+<body>
+    <p>BOM 浏览器对象模型</p>
+    <p>BOM 提供了一组对象，可以使用 js 来操作浏览器</p>
+    <p>BOM 对象 Window Navigator Location History Screen </p>
+    <dl>
+        <dt>Window</dt>
+        <dd>代表的是整个浏览器窗口，网页中的全局对象</dd>
+        <dt>Navigator</dt>
+        <dd>代表当前浏览器的信息，通过对象可以来识别不同的浏览器</dd>
+        <dd>历史原因，其中大部分属性都不能用来识别浏览器，一般使用 userAgent 来识别浏览器, IE11已经判断不出来了</dd>
+        <dd>也可通过对象持有的属性来判断，例如 ActiveXObject </dd>
+        <dt>Location</dt>
+        <dd>浏览器地址栏，跳转信息</dd>
+        <dt>History</dt>
+        <dd>操作浏览器历史记录。由于隐私 不能获取具体历史记录，只能操作前后翻页，且只能操作当次访问</dd>
+        <dt>Screen</dt>
+        <dd>获取屏幕信息</dd>
+    </dl>
+
+
+
+    <button id='btn1'>back</button>
+    <button id='btn2'>forward</button>
+    <button id='btn3'>reLocation</button>
+
+
+    <script type='text/javascript'>
+        //console.log(location, navigator.userAgent);
+        var ua = navigator.userAgent;
+        if (/firefox/i.test(ua)) {
+            console.log('firefox');
+        } else if (/chrome/i.test(ua)) {
+            console.log('chrome');
+        } else if (/msie/i.test(ua)) {
+            console.log('IE');
+        } else if ('ActiveXObject' in window) {
+            console.log('IE 11');
+        }
+        //IE11, window.ActiveXObject 返回的 false 
+        //if (window.ActiveXObject) { alert('is IE'); }
+
+
+        //*******************
+        console.log('当前访问连接的数量 ' + history.length);
+
+        var btn1 = document.getElementById('btn1');
+        btn1.onclick = function() {
+            history.back();
+            //history.go(2); //向前跳转2个页面
+            //history.go(-3); //返回跳转到前3个页面
+        };
+        var btn2 = document.getElementById('btn2');
+        btn2.onclick = function() {
+            history.back();
+        };
+
+
+        //*******************
+        var btn3 = document.getElementById('btn3');
+        btn3.onclick = function() {
+            //location = 'http://www.baidu.com';
+            location = '01_js_hello.html';
+
+            // location.assign('http://www.baidu.com');
+            // location.reload(true); //重新加载当前页面 true会强制清空缓存刷新
+            //location.replace('http://www.baidu.com'); //这个替换跳转后不生成李老师记录，返回不去了
+
+        };
+    </script>
+</body>
+
+</html>

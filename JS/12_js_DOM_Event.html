@@ -17,6 +17,13 @@
             width: 200px;
             height: 30px;
         }
+        
+        #box3 {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
     </style>
 
     <script type="text/javascript">
@@ -47,18 +54,43 @@
                 }
                 // event = event || window.event;
                 p.innerHTML = 'x =' + event.clientX + ' y=' + event.clientY;
+
+                //取消冒泡事件传递，当移动到box1，红色div不跟着鼠标移动
+                event.cancelBubble = true;
+            };
+
+
+            var box3 = document.getElementById('box3');
+            document.onmousemove = function(event) {
+                // console.log('move');
+                event = event || window.event;
+                //pageX pageY 获取鼠标相对于当前页面的坐标。在 IE8 中不支持
+                //clientX 是整个页面来说的坐标，页面滚动出屏幕也会算上
+                // var left = event.pageX;
+                // var top = event.pageY;
+
+                var st = document.body.scrollTop || document.documentElement.scrollTop
+                var sl = document.body.scrollLeft || document.documentElement.scrollLeft
+
+                var left = event.clientX;
+                var top = event.clientY;
+
+                box3.style.left = left + sl + 'px';
+                box3.style.top = top + st + 'px';
             };
 
         };
     </script>
 </head>
 
-<body>
+<body style="height: 3000px; width: 1000px;">
     <div id="box1"></div>
     <br>
     <div id="box2">
         <p></p>
     </div>
+
+    <div id="box3"></div>
 </body>
 
 </html>

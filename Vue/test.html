@@ -2,9 +2,14 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VueTest</title>
     <style>
+        [v-cloak] {
+            display: none
+        }
+        
         .item {
             color: red;
         }
@@ -14,20 +19,45 @@
 <body>
 
     <div id="app">
-        {{ msg }}
+        <div>
+            <!-- 使用 v-cloak 能够解决 插值表达式闪烁的问题-->
+            <p v-cloak>{{ msg }} , 不会覆盖</p>
+            <p v-text='msg'>v-text 默认没有闪烁的问题，会覆盖元素中原本的内容</p>
+            <span>{{msg2}}</span> <span v-text='msg2'></span>
+            <span v-html='msg2'></span>
+        </div>
+        <hr>
+
+        <div>
+            <!-- v-bind 是用于绑定属性的指令，简写为 :属性。 title="放到按钮上显示的文字 alt"-->
+            <input id='myinput' type='button' value='v-bind' :title='mytitle + "123"' />
+            <!-- v-on 用于绑定事件，简写 @: -->
+            <input type='button' value='v-on' @click='showAlert' />
+        </div>
+        <hr>
+
+        <div>
+            <button @click='textRun'>run</button> <button @click='textStop'>stop</button>
+            <br>
+            <span>{{msg3}}</span>
+        </div>
+        <hr>
+
 
         <div>
             <input type="text" v-model='info' />
-            <button @click='handleClick'>??�</button>
+            <button @click='handleClick'>button</button>
+
+            <ul>
+                <!-- <li v-for='item in list'>{{item}}</li> -->
+                <todo-item v-for='item in list' v-bind:item='item'></todo-item>
+            </ul>
         </div>
-        <ul>
-            <!-- <li v-for='item in list'>{{item}}</li> -->
-            <todo-item v-for='item in list' v-bind:item='item'></todo-item>
-        </ul>
+
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
         Vue.component('todo-item', {
             props: ['item'],
@@ -38,11 +68,36 @@
             // data() { return { msg: 'hello vue!' } }
             data: {
                 msg: 'hello vue',
+                msg2: '<h1>this is h1</h1>',
+                msg3: 'text run run run ~~~ ',
+                intervalId: null,
+                mytitle: 'this is title',
                 info: '',
                 list: []
             },
 
             methods: {
+                showAlert() {
+                    alert('my input button2 click');
+                },
+                textRun() {
+                    /* function(){} 改为 ()=>{} 箭头函数，内部和外部 this 保持一致，指向 vue 实例
+                    就不需要 var _this = this 了
+                    */
+                    if (this.intervalId != null) {
+                        return;
+                    }
+                    this.intervalId = setInterval(() => {
+                        var start = this.msg3.substring(0, 1);
+                        var end = this.msg3.substring(1);
+                        this.msg3 = end + start;
+                        // vue实例，会监听自己 data 上的所有数据的改变，自动把新数据同步到页面上
+                    }, 300);
+                },
+                textStop() {
+                    clearInterval(this.intervalId);
+                    this.intervalId = null;
+                },
                 handleClick() {
                     console.log(this.info);
                     this.list.push(this.info);
@@ -50,6 +105,10 @@
                 }
             }
         })
+
+        document.getElementById('myinput').onclick = function() {
+            alert('my input button click');
+        };
     </script>
 
 

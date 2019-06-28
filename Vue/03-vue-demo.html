@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>VueTest</title>
+    <style>
+        .div_head {
+            width: 800px;
+            height: 60px;
+            margin: 0 auto;
+            background-color: aliceblue;
+            padding-top: 20px;
+        }
+        
+        .table1 {
+            width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        
+        .table1 th,
+        td {
+            width: 200px;
+            border: 1px solid black;
+        }
+        
+        .table1 tr:nth-child(odd) {
+            background-color: azure;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="div_head">
+            <div class="div_head_content">
+                <label>ID:
+                <input type="text" v-model="id">
+                </label>
+                <label>name:
+                    <!-- //回车添加 @keyup.enter  13键盘码  可以自定义全局按键修饰符-->
+                <input type="text" v-model="name" @keyup.mykeycode="add"> 
+                </label>
+                <input type="button" value="ADD" @click="add">
+
+                <label>search:
+                    <!-- 自定义指令 v-focus 自动获取焦点-->
+                        <input type="text" v-model="keyword" id="searchId" v-focus>
+                        </label>
+            </div>
+        </div>
+        <table class="table1">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>time</th>
+                    <th>option</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in search(keyword)" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.time | dateFormat}}</td>
+                    <td><a href="" @click.prevent="del(item.id)">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+        <div>
+            <p>
+                过滤器 <br> // 过滤器中 function 第一个参数，已经被规定死了，是管道符前面传递过来的数据 <br> Vue.filter('过滤器名称', function(){});
+            </p>
+            <p>过滤器调用，采用就近原则，有私有和全局名称一致，这时优先调用私有过滤器</p>
+            <p>{{msg | msgFormat('*abc*', '123') | test}}</p>
+
+        </div>
+    </div>
+
+
+
+    <div id="app2">
+        <p> 全局过滤器 所有vue实例都共享的： {{ dt | dateFormat }}</p>
+    </div>
+
+
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="vue.js"></script>
+    <script>
+        //全局的过滤器
+        Vue.filter('msgFormat', function(msg, arg, arg2) {
+            return msg.replace(/那是/g, arg + arg2);
+        });
+        Vue.filter('test', function(msg) {
+            return msg + '====';
+        });
+
+        Vue.filter('dateFormat', function(dateStr, pattern = '') {
+            var dt = new Date(dateStr);
+            var y = dt.getFullYear();
+            var m = (dt.getMonth() + 1).toString().padStart(2, '0'); //不足两位补0
+            var d = dt.getDate();
+            // return y + '-' + m + '-' + d;
+            //模板字符串
+            //return `${y}-${m}-${d}`;
+
+            if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+                return `${y}-${m}-${d}`;
+            } else {
+                var hh = dt.getHours();
+                var mm = dt.getMinutes();
+                var ss = (dt.getSeconds() + 1).toString().padStart(2, '0');;
+                return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+            }
+        });
+
+        // 自定义全局按钮键盘修饰符
+        Vue.config.keyCodes.mykeycode = 13;
+
+        //自定义指令, 定义全局指令，
+        //参数1：指令名称，不要加v-前缀，但是在调用时要加v-进行调用
+        //参数2：是对象，有些相关指令的函数，可在特定的阶段执行相关的操作
+        Vue.directive('focus', {
+            bind: function(el) {
+                //指令绑定到元素上，会执行，只执行一次。el被绑定的那个元素
+                //元素刚绑定元素，还没插入DOM中，focus方法没有作用，插入之后才能获取焦点 //el.focus();
+            },
+            inserted: function(el) {
+                //元素插入到DOM的时候，会执行 
+                el.focus();
+            },
+            updated: function() {
+                //当组件vnode更新的时候，会执行，可执行多次
+            }
+        });
+
+        new Vue({
+            el: '#app2',
+            data: {
+                dt: new Date()
+            }
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                list: [{
+                    id: 1,
+                    name: 'name1',
+                    time: new Date()
+                }, {
+                    id: 2,
+                    name: 'name2',
+                    time: new Date()
+                }, {
+                    id: 3,
+                    name: 'name3',
+                    time: new Date()
+                }],
+                keyword: '',
+                msg: '那是一个夏天，那是一个中午，那是一个下午'
+            },
+            methods: {
+                add() {
+                    var addObj = {
+                        id: this.id,
+                        name: this.name,
+                        time: new Date()
+                    };
+                    this.list.push(addObj);
+                    this.id = this.name = "";
+                },
+                del(id) {
+                    /*
+                    this.list.some((item, i) => {
+                        console.log(item.id, item.name, id);
+                        if (item.id == id) {
+                            this.list.splice(i, 1);
+                            return true;
+                        }
+                    });*/
+                    var index = this.list.findIndex(item => {
+                        if (item.id == id) {
+                            return true;
+                        }
+                    });
+                    this.list.splice(index, 1);
+                },
+
+                search(keyword) {
+                    /*
+                    var newList = [];
+                    this.list.forEach(item => {
+                        // ?????? forEarch some filter findIndex
+                        if (item.name.indexOf(keyword) != -1){ newList.push(item); }
+                    });
+                    return newList;
+                    */
+                    return this.list.filter(item => {
+                        if (item.name.includes(keyword)) {
+                            return item;
+                        }
+                    });
+                }
+            },
+
+            filters: {
+                //私有过滤器
+                dateFormat: function(dateStr, pattern = '') {
+                    // console.log('---- private');
+                    var dt = new Date(dateStr);
+                    var y = dt.getFullYear();
+                    var m = dt.getMonth() + 1;
+                    var d = dt.getDate();
+                    // return y + '-' + m + '-' + d;
+                    //模板字符串
+                    //return `${y}-${m}-${d}`;
+
+                    if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+                        return `${y}-${m}-${d}`;
+                    } else {
+                        var hh = dt.getHours();
+                        var mm = dt.getMinutes();
+                        var ss = dt.getSeconds();
+                        return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+                    }
+                }
+
+            }
+
+
+        });
+
+        //获取焦点
+        //document.getElementById('searchId').focus;
+
+        //Vue.config.devtools = true
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueTest</title>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+        
+        .div1 {
+            background-color: antiquewhite;
+            height: 200px;
+            width: 600px;
+        }
+        
+        .div2 {
+            background-color: rgb(215, 218, 250);
+            height: 60px;
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>
+            <h2>v-coak插值表达式闪烁 v-text会替换元素原本内容 v-html显示网页内容</h2>
+            <!-- 使用 v-cloak 能够解决 插值表达式闪烁的问题-->
+            <p v-cloak>{{ msg }} , 不会覆盖</p>
+            <p v-text='msg'>v-text 默认没有闪烁的问题，会覆盖元素中原本的内容</p>
+            <span>{{msg2}}</span> <span v-text='msg2'></span>
+            <span v-html='msg2'></span>
+        </div>
+        <hr>
+
+        <div>
+            <h2>v-bind绑定属性 v-on绑定事件</h2>
+            <!-- v-bind 是用于绑定属性的指令，简写为 :属性。 title="放到按钮上显示的文字 alt"-->
+            <input id='myinput' type='button' value='v-bind' :title='mytitle + "123"' />
+            <!-- v-on 用于绑定事件，简写 @: ,可以加小括号传参showAlert()-->
+            <input type='button' value='v-on' @click='showAlert' />
+        </div>
+        <hr>
+
+        <div>
+            <h2> 跑马灯例子</h2>
+            <button @click='textRun'>run</button> <button @click='textStop'>stop</button>
+            <br>
+            <span>{{msg3}}</span>
+        </div>
+        <hr>
+
+        <div class="div1" @click.capture="div1Handle">
+            <h2>事件修饰符 .capture .self .stop .prevent .once</h2>
+            <!-- .capture 捕获事件，添加在外层，就会从外到里触发事件 -->
+            <!-- .stop 事件修饰符，防止冒泡 -->
+            <input type="button" value="Button" @click.stop="div1BtnHandle" />
+            <!-- .prevent 阻止默认行为，不跳转连接 -->
+            <a href="http://www.baidu.com" target="_blank" @click.prevent="div1LinkHandle">this is link</a>
+
+
+            <!-- .self 只有点击当前元素才会触发该事件，点击里面的button不会冒泡 -->
+            <!-- .self 只能阻止自己的冒泡，不会真正的阻止 冒泡的行为，和 .stop 有区别  -->
+            <div class="div2" @click.self="div2Handle">
+                <input type="button" value="Button" @click="div2BtnHandle" />
+            </div>
+
+            <!-- .once 只触发一次处理 -->
+            <a href="http://www.baidu.com" target="_blank" @click.prevent.once="div1LinkHandle">this is link</a>
+
+        </div>
+        <hr>
+
+        <div>
+            <h2>v-bind只能单向绑定，m->v。v-model可以实现双向数据绑定，只能用子啊表单元素，input select checkbox textarea</h2>
+            <p v-text='msg4'></p>
+            <input type="text" v-model='msg4' />
+
+            <p>例子</p>
+            <input type="text" v-model="n1">
+            <select v-model="opt">
+                <option value="+">+</option>
+                <option value="*">x</option>
+            </select>
+            <input type="text" v-model="n2">
+            <input type="button" value="=" @click="calc">
+            <input type="text" v-model="result">
+        </div>
+        <hr>
+
+        <div>
+            <h2>v-for 遍历数组、对象，迭代数子从1开始</h2>
+            <span v-for="item in forList">{{item}} </span> <br>
+            <span v-for="(item, i) in forList">{{i}}={{item}} </span> <br>
+            <span v-for="user in forList2">name:{{user.name}}, age:{{user.age}} </span> <br>
+            <span v-for="(value, key, i) in forObj">{{i}}-{{key}}:{{value}}  </span> <br>
+            <span v-for="count in 10">{{count}} </span> <br>
+        </div>
+        <hr>
+
+        <div>
+            <label>Id:
+                <input type="text" v-model="forList3Id">
+            </label>
+            <label>name:
+                    <input type="text" v-model="forList3Name">
+                </label>
+            <input type="button" value="add" @click="vForAddClick">
+
+            <!-- v-for 循环的时候，key属性只能使用 number或者string，
+                key使用时必须使用 v-bind 属性绑定的形式，指定 key 的值，唯一的key值 -->
+            <p v-for="item in forList3" :key="item.id">
+                <input type="checkbox">{{item.id}} -- {{item.name}}
+            </p>
+        </div>
+        <hr>
+
+
+        <div>
+            <h2>v-if v-show</h2>
+            <input type="button" value="change" @click="toggle">
+            <input type="button" value="change" @click="vifvshowFlag = ! vifvshowFlag">
+            <p v-if="vifvshowFlag">v-if 每次都会重新删除或创建元素。有较高的切换性能消耗</p>
+            <p v-show="vifvshowFlag">v-show 补货重新进行DOM操作，只是切换元素的 display:none 样式。有较高的厨师渲染消耗。</p>
+            <p>如果元素可能永远也不会被显示出来，推荐使用 v-if </p>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            // data() { return { msg: 'hello vue!' } }
+            data: {
+                msg: 'hello vue',
+                msg2: '<h1>this is h1</h1>',
+                msg3: 'text run run run ~~~ ',
+                intervalId: null,
+                mytitle: 'this is title',
+                msg4: 'msg',
+                n1: '0',
+                n2: '0',
+                opt: '*',
+                result: '',
+                forList: [1, 2, 3, 4, 5, 6],
+                forList2: [{
+                    name: 'n1',
+                    age: 1
+                }, {
+                    name: 'n2',
+                    age: 2
+                }],
+                forObj: {
+                    name: 'name1',
+                    age: 7
+                },
+
+                forList3: [{
+                    name: 'n1',
+                    id: '1'
+                }, {
+                    name: 'n2',
+                    id: '2'
+                }],
+                forList3Id: '',
+                forList3Name: '',
+
+                vifvshowFlag: true
+
+            },
+
+            methods: {
+                showAlert() {
+                    alert('my input button2 click');
+                },
+                textRun() {
+                    /* function(){} 改为 ()=>{} 箭头函数，内部和外部 this 保持一致，指向 vue 实例
+                    就不需要 var _this = this 了
+                    */
+                    if (this.intervalId != null) {
+                        return;
+                    }
+                    this.intervalId = setInterval(() => {
+                        var start = this.msg3.substring(0, 1);
+                        var end = this.msg3.substring(1);
+                        this.msg3 = end + start;
+                        // vue实例，会监听自己 data 上的所有数据的改变，自动把新数据同步到页面上
+                    }, 300);
+                },
+                textStop() {
+                    clearInterval(this.intervalId);
+                    this.intervalId = null;
+                },
+
+
+                div1Handle() {
+                    console.log("div1 handle");
+                },
+
+                div1BtnHandle() {
+                    console.log("div1 btn handle");
+                },
+
+                div1LinkHandle() {
+                    console.log("div1 link handle");
+                },
+
+                div2Handle() {
+                    console.log("div2 handle");
+                },
+                div2BtnHandle() {
+                    console.log("div2 btn handle");
+                },
+
+                calc() {
+                    /*
+                    switch (this.opt) {
+                        case '+':
+                            this.result = parseInt(this.n1) + parseInt(this.n2);
+                            break;
+                        case '*':
+                            this.result = parseInt(this.n1) * parseInt(this.n2);
+                            break;
+                    }*/
+                    //投机取巧，正式开发少用
+                    var codeStr = 'parseInt(this.n1)' + this.opt + 'parseInt(this.n2)';
+                    this.result = eval(codeStr);
+                },
+
+                vForAddClick() {
+                    this.forList3.unshift({
+                        id: this.forList3Id,
+                        name: this.forList3Name
+                    });
+                },
+
+                toggle() {
+                    this.vifvshowFlag = !this.vifvshowFlag;
+                }
+            }
+        })
+
+        document.getElementById('myinput').onclick = function() {
+            alert('my input button click');
+        };
+    </script>
+
+
+
+</body>
+
+</html>

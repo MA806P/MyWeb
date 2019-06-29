@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>VueTest</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <p>vue 实例生命周期，生命周期钩子=生命周期函数=生命周期事件</p>
+        <dl>
+            <dt><h3>生命周期函数分类</h3></dt>
+            <dt>创建期间的生命周期函数</dt>
+            <dd>beforeCreate created beforeMount mounted</dd>
+            <dd>在 beforeCreate 执行的时候，data methods 中的数据还没有初始化</dd>
+            <dd>在 created 函数中 data methods 都已经被初始化好了</dd>
+            <dd> beforeMount 函数，模板已经在内存中编译完成了，但没有渲染到页面中。页面中元素还没有被真正替换过来，只是一些模板字符串 </dd>
+            <dd> mounted 函数，表示内存中的模板已经真实的挂载到页面中，用户已经可以看到渲染好的页面了。执行完这个函数就表示，实例已经被完全创建好了，在内存中。</dd>
+            <dd>如果要通过某些插件操作页面上的DOM节点，最早要在 mounted 中进行</dd>
+            <dt>运行期间的生命周期函数</dt>
+            <dd>beforeUpdate updated beforeDestroy destroyed</dd>
+            <dd>beforeUpdate 会根据data数据的改变，有选择性的执行0-多次。数据被更新了，界面还没更新</dd>
+            <dd>然后根据 data 中最新的数据，在内存中重新渲染出一份最新的内存DOM树，重新渲染到最新的页面中去，完成M->V的更新 updated</dd>
+            <dd>beforeDestroy 函数，从运行阶段进入销毁阶段，这时实例上的 data methods filter directive 都处于可用状态，还没有被真正销毁</dd>
+            <dd>destroyed 函数，实例上的data...被销毁</dd>
+
+        </dl>
+
+        <p id="p1">this is p1. {{ msg }} </p>
+        <input type="button" value="change data" @click="msg='is changed'">
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello'
+            },
+            methods: {
+                show() {
+                    console.log('show run');
+                }
+            },
+
+            beforeCreate() {
+                console.log(' beforeCreate ');
+                //this.show(); //TypeError: this.show is not a function
+            },
+            created() {
+                console.log(' created ');
+                this.show();
+            },
+            beforeMount() {
+                console.log(' beforeMount ');
+                console.log(document.getElementById("p1").innerText); //this is p1. {{ msg }}
+            },
+            mounted() {
+                console.log(' mounted ');
+                console.log(document.getElementById("p1").innerText); //this is p1. hello
+            },
+            /*
+            beforeCreate
+            created 
+            show run
+            beforeMount 
+            this is p1. {{ msg }}
+            mounted 
+            this is p1. hello
+            */
+
+            beforeUpdate() {
+                //数据被更新了，界面还没更新
+                console.log(' beforeUpdate ');
+                console.log(this.msg, document.getElementById("p1").innerText); //is changed this is p1. hello
+            },
+            updated() {
+                //数据被更新了，界面还没更新
+                console.log(' updated ');
+                console.log(this.msg, document.getElementById("p1").innerText); //is changed this is p1. is changed
+            }
+
+
+        });
+    </script>
+
+
+
+</body>
+
+</html>

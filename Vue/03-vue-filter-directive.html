@@ -47,7 +47,7 @@
 
                 <label>search:
                     <!-- 自定义指令 v-focus 自动获取焦点-->
-                        <input type="text" v-model="keyword" id="searchId" v-focus>
+                        <input type="text" v-model="keyword" id="searchId" v-focus v-color="'blue'">
                         </label>
             </div>
         </div>
@@ -79,11 +79,16 @@
             <p>{{msg | msgFormat('*abc*', '123') | test}}</p>
 
         </div>
+
+        <div>
+            <p v-fontweight="900" v-fontsize="'50px'"> 自定义私有指令 </p>
+        </div>
     </div>
 
 
-
+    <hr>
     <div id="app2">
+        <p> app2</p>
         <p> 全局过滤器 所有vue实例都共享的： {{ dt | dateFormat }}</p>
     </div>
 
@@ -91,7 +96,7 @@
 
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
-    <script src="vue.js"></script>
+    <script src="js/vue.js"></script>
     <script>
         //全局的过滤器
         Vue.filter('msgFormat', function(msg, arg, arg2) {
@@ -127,18 +132,34 @@
         //参数1：指令名称，不要加v-前缀，但是在调用时要加v-进行调用
         //参数2：是对象，有些相关指令的函数，可在特定的阶段执行相关的操作
         Vue.directive('focus', {
+            // 钩子函数
             bind: function(el) {
                 //指令绑定到元素上，会执行，只执行一次。el被绑定的那个元素
                 //元素刚绑定元素，还没插入DOM中，focus方法没有作用，插入之后才能获取焦点 //el.focus();
             },
             inserted: function(el) {
                 //元素插入到DOM的时候，会执行 
+                // 和js行为有关的操作，最好在 inserted 中去执行
                 el.focus();
             },
             updated: function() {
                 //当组件vnode更新的时候，会执行，可执行多次
             }
         });
+        Vue.directive('color', {
+            bind: function(el, binding) {
+                //样式只要通过指令绑定给了元素，不管这个元素有没有被插入到页面中去，
+                //这个元素都有了内联的样式，显示到页面中，浏览器的渲染引擎必然会解析样式，应用给这个元素
+                // 和样式相关的操作，一般都可在bind执行
+                // el.style.color = 'red';
+                // console.log(binding.name); //color
+                console.log(binding.value); //blue
+                console.log(binding.expression); //'blue'
+                el.style.color = binding.value;
+            }
+        });
+
+
 
         new Vue({
             el: '#app2',
@@ -232,6 +253,19 @@
                         var ss = dt.getSeconds();
                         return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
                     }
+                }
+
+            },
+            directives: {
+                //自定义私有指令
+                'fontweight': {
+                    bind: function(el, binding) {
+                        el.style.fontWeight = binding.value;
+                    }
+                },
+                'fontsize': function(el, binding) {
+                    //这样简写，等同于把代码写到 bind 和 update 中去
+                    el.style.fontSize = parseInt(binding.value) + 'px';
                 }
 
             }

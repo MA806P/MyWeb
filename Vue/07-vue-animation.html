@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueTest</title>
+    <style>
+        /* v-enter 时间点，动画进入前 */
+        /* v-leave-to 动画离开后，离开的终止状态，元素动画已经结束 */
+        
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(200px);
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.4s ease;
+        }
+        
+        .my2-enter,
+        .my2-leave-to {
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        
+        .my2-enter-active,
+        .my2-leave-active {
+            transition: all 0.4s ease;
+        }
+        
+        .ball {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="lib/animate.css" />
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="button" value="BUTTON1" @click="flag1=!flag1" />
+
+        <!-- transition 元素，是 Vue 官方提供的 -->
+        <transition>
+            <h3 v-if="flag1">this is h3. </h3>
+        </transition>
+
+        <hr>
+
+        <input type="button" value="BUTTON2" @click="flag2=!flag2" />
+
+        <!-- transition name设置前缀，区分不同组的动画 .my2-enter -->
+        <transition name="my2">
+            <h3 v-if="flag2">this is h3. </h3>
+        </transition>
+
+        <input type="button" value="BUTTON3" @click="flag3=!flag3" />
+        <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut" :duration="9000">
+            <h3 v-if="flag3">this is h3. </h3>
+        </transition>
+        <transition enter-active-class="bounceIn" leave-active-class="bounceOut" :duration="{enter:600, leave:900}">
+            <h3 class="animated" v-if="flag3">this is h3. </h3>
+        </transition>
+
+        <br>
+        <hr>
+        <br>
+        <a href="https://daneden.github.io/animate.css/" target="_blank">animate.css</a>
+
+        <br>
+        <hr>
+        <br>
+        <input type="button" value="RUN" @click="flag4=!flag4">
+        <transition name="ball" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+            <div class="ball" v-show="flag4"></div>
+        </transition>
+
+
+
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                flag1: false,
+                flag2: false,
+                flag3: false,
+                flag4: false
+            },
+            methods: {
+                // el 要进行动画的 DOM 元素
+                beforeEnter(el) {
+                    el.style.transform = 'translate(0, 0)'
+                },
+                enter(el) {
+                    el.style.transform = 'translate(150px, 450px)';
+                    el.style.transition = 'all 1s ease'
+                },
+                afterEnter(el) {
+                    el.style.transform = 'translate(0, 0)'
+                }
+            }
+        })
+    </script>
+
+
+
+</body>
+
+</html>

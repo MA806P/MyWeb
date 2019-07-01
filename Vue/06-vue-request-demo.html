@@ -61,9 +61,14 @@
 
     </div>
 
-    <script src="js/vue.js"></script>
-    <script src="js/vue-resource.js"></script>
+    <script src="lib/vue.js"></script>
+    <script src="lib/vue-resource.js"></script>
     <script>
+        // 若通过全局配置了请求数据接口根域名，在每次单独发起请求的URL路径，
+        //应该以相对路径开头前面不能带 / 否则，不会会启用根路径做拼接
+        Vue.http.options.root = 'http://www.liulongbin.top:3005/';
+        //全局启用 emulateJSON 渲染
+        Vue.http.options.emulateJSON = true;
         new Vue({
             el: '#app',
             data: {
@@ -91,32 +96,41 @@
             },
 
             methods: {
-                add() {
-                    var addObj = {
-                        id: this.id,
-                        name: this.name,
-                        ctime: new Date()
-                    };
-                    this.list.push(addObj);
-                    this.id = this.name = "";
-                },
-                del(id) {
-                    var index = this.list.findIndex(item => {
-                        if (item.id == id) {
-                            return true;
-                        }
-                    });
-                    this.list.splice(index, 1);
-                },
 
                 getAllList() {
-                    this.$http.get('http://www.liulongbin.top:3005/api/getprodlist').then(result => {
+                    this.$http.get('api/getprodlist').then(result => {
                         console.log(result); //result.body
                         var result = result.body;
                         if (result.status === 0) {
                             this.list = result.message;
                         } else {
                             alert('获取数据失败');
+                        }
+                    });
+                },
+                //, { emulateJSON: true }
+                add() {
+                    this.$http.post('api/addproduct', {
+                        name: this.name
+                    }).then(function(result) {
+                        console.log(result); //result.body
+                        if (result.body.status === 0) {
+                            //添加完成后刷新列表
+                            this.getAllList();
+                            this.name = '';
+                        } else {
+                            alert('添加失败！');
+                        }
+                    });
+                },
+
+                del(id) {
+                    this.$http.get('api/delproduct/' + id).then(result => {
+                        if (result.body.status === 0) {
+                            //删除后刷新列表
+                            this.getAllList();
+                        } else {
+                            alert('删除失败！');
                         }
                     });
                 }

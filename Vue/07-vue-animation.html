@@ -96,16 +96,30 @@
                 flag4: false
             },
             methods: {
+
+                //动画钩子函数
                 // el 要进行动画的 DOM 元素
                 beforeEnter(el) {
+                    //动画入场之前，动画尚未开始，设置起始位置
                     el.style.transform = 'translate(0, 0)'
                 },
-                enter(el) {
+                enter(el, done) {
+                    //动画开始之后，可以设置小球完成动画之后的，结束状态
+                    el.offsetWidth; //这个没有实质的作用，如果不写没有动画效果。相当于动画刷新的作用
                     el.style.transform = 'translate(150px, 450px)';
-                    el.style.transition = 'all 1s ease'
+                    el.style.transition = 'all 1s ease';
+
+                    //done 调用会立即执行，afterEnter 小球消失，不然会等一会再消失
+                    //done 其实就是 afterEnter 也就是 afterEnter 函数的引用
+                    done();
                 },
                 afterEnter(el) {
-                    el.style.transform = 'translate(0, 0)'
+                    //作用1，控制小球的显示，作用2，直接跳过后半场动画，flag直接变为false
+                    //当第二次点击，前场动画再次执行
+                    this.flag4 = !this.flag4;
+                    //el.style.opacity = 0.5;
+
+                    //vue把动画，用钩子函数拆分成两部分 flag = false => true => flase
                 }
             }
         })

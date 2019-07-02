@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueTest</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <p>组件，为了拆分 vue 实例的代码量的，能以不同的组件，划分不同的功能模块</p>
+        <p>模块化：从代码逻辑角度划分，方便代码分层开发，保证每个功能模块的只能单一</p>
+        <p>组件化：从UI界面的角度进行划分的，前端的组件化，方便UI组件的重用</p>
+
+        <!-- myCom1 驼峰命名的，到标签里使用，大写字母之间用横杆-->
+        <my-com1></my-com1>
+        <my-com2></my-com2>
+        <my-com3></my-com3>
+        <my-com4></my-com4>
+
+        <!-- <login></login> 私有组件别的地方不能用-->
+    </div>
+
+    <div id="app2">
+        <login></login>
+    </div>
+
+    <template id="tmp1">
+            <div>
+                <h3>在外部定义的组件结构，写在 div#app 的外面，这种方法写的有代码提示和高亮</h3>
+                <span>也是只能有唯一的根元素，外面 div 包起来</span>
+            </div>
+        </template>
+
+    <template id="tmp2">
+                <div>
+                    <h3>私有组件 login </h3>
+                </div>
+            </template>
+
+    <script src="lib/vue.js"></script>
+    <script>
+        //这样是全局的组件，div#app 里能用，其他的也能用这个组件。也可以定义私有的组件
+        var com1 = Vue.extend({
+            // template 指定组件要展示的 HTML 的结构
+            template: '<h3>Vue.extend</h3>'
+        });
+        //Vue.component('组件的名称', 创建出来的组件模板对象)
+        Vue.component('myCom1', com1);
+
+        //Vue.component('myCom2', Vue.extend({ template: '<h3>Vue.extend</h3>' }));
+        Vue.component('myCom2', {
+            template: '<div><h3>Vue component</h3><span>组件的 template 指向的模板内容，必须只能有唯一的一个根元素，包起来</span></div>'
+        });
+
+        Vue.component('myCom3', {
+            template: '#tmp1'
+        })
+
+
+        //组件可以有自己的 data 数据，data 必须是一个方法，还必须返回一个对象
+        //组件中的 data 数据使用，和实例中的使用一样
+        Vue.component('myCom4', {
+            template: '<h3>组件中的data -- {{msg}}</h3>',
+            data: function() {
+                return {
+                    msg: '这是组件中 data 定义的数据'
+                };
+            }
+        });
+
+        new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+
+            }
+        });
+
+        new Vue({
+            el: '#app2',
+            data: {},
+            methods: {},
+            filters: {},
+            directive: {},
+
+            //定义私有组件
+            components: {
+                login: {
+                    template: '#tmp2'
+                }
+            },
+
+            beforeCreate() {},
+            created() {},
+            beforeMount() {},
+            mounted() {},
+            updated() {},
+            beforeDestroy() {},
+            destroy() {},
+        })
+    </script>
+
+
+
+</body>
+
+</html>

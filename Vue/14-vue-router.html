@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueTest</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        h3 {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background-color: orange;
+            height: 80px;
+        }
+        
+        .container {
+            display: flex;
+            height: 600px;
+        }
+        
+        .leftHeader {
+            background-color: antiquewhite;
+            /* width: 20%; */
+            flex: 2;
+        }
+        
+        .mainBox {
+            background-color: aquamarine;
+            /* width: 80%; */
+            flex: 8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <p>路由,命名视图实现布局</p>
+
+        <router-view></router-view>
+        <div class="container">
+            <router-view name="left"></router-view>
+            <router-view name="main"></router-view>
+        </div>
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script src="lib/vue-router.js"></script>
+    <script>
+        var header = {
+            template: '<h3 class="header">header</h3>'
+        };
+        var left = {
+            template: '<h3 class="leftHeader">left header</h3>'
+        };
+        var mainBox = {
+            template: '<h3 class="mainBox">main box header</h3>'
+        };
+
+        var router = new VueRouter({
+            routes: [{
+                path: '/',
+                components: {
+                    'default': header,
+                    'left': left,
+                    main: mainBox
+                }
+            }]
+        });
+
+        new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+
+            router
+        })
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueTest</title>
+    <style>
+        .item {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <p>监听数据的改变</p>
+        <div>
+            <p>@keyup</p>
+            <input type="text" v-model='firstname' @keyup='getFullName'> +
+            <input type="text" v-model='lastname' @keyup='getFullName'> =
+            <input type="text" v-model='fullname'>
+        </div>
+
+        <div>
+            <p>watch</p>
+            <input type="text" v-model='firstname2'> +
+            <input type="text" v-model='lastname2'> =
+            <input type="text" v-model='fullname2'>
+        </div>
+
+        <div>
+            <p>computed</p>
+            <input type="text" v-model='firstname3'> +
+            <input type="text" v-model='lastname3'> =
+            <input type="text" v-model='fullname3'>
+            <span>{{fullname3}}</span>
+        </div>
+
+        <br>
+        <p>监听路由的改变</p>
+        <div>
+            <router-link to="/login">login</router-link>
+            <router-link to="/register">register</router-link>
+            <router-view></router-view>
+        </div>
+
+        <p>computed 主要当做属性来使用</p>
+        <p>methods 方法表示一个具体的操作，主要书写逻辑</p>
+        <p>watch 主要用来监听某些特定数据的变化，从而进行某些具体业务逻辑操作，可看做是 computed 和 methods的结合体</p>
+    </div>
+
+
+    <script src="lib/vue.js"></script>
+    <script src="lib/vue-router.js"></script>
+    <script>
+        var login = {
+            template: '<h3>login</h3>'
+        };
+        var register = {
+            template: '<h3>register</h3>'
+        };
+
+        var router = new VueRouter({
+            routes: [{
+                path: '/',
+                redirect: '/login'
+            }, {
+                path: '/login',
+                component: login
+            }, {
+                path: '/register',
+                component: register
+            }]
+        });
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                firstname: '',
+                lastname: '',
+                fullname: '',
+
+                firstname2: '',
+                lastname2: '',
+                fullname2: '',
+
+                firstname3: '',
+                lastname3: ''
+            },
+            methods: {
+                getFullName() {
+                    this.fullname = this.firstname + '-' + this.lastname;
+                }
+            },
+
+            router,
+
+            watch: {
+                //可监听 data 中指定数据的变化
+                'firstname2': function(newVal, oldVal) {
+                    //console.log(newVal + '---' + oldVal);
+                    //this.fullname2 = this.firstname2 + '-' + this.lastname2;
+                    this.fullname2 = newVal + '-' + this.lastname2;
+                },
+                'lastname2': function(newVal) {
+                    this.fullname2 = this.firstname2 + '-' + newVal;
+                },
+
+                '$route.path': function(newVal) {
+                    if (newVal === '/login') {
+                        console.log('welcome login');
+                    } else if (newVal === '/register') {
+                        console.log('welcome register');
+                    }
+                }
+            },
+
+            computed: {
+                //可以定义一些，计算属性，本质是一个方法，使用时直接当做属性来使用
+                //只要计算属性，function 内部所用到的任何 data 中的数据发生了变化，就会立刻重新计算这个属性值
+                //计算属性的求值结果，会被缓存起来，方便下次直接使用。如方法中任何数据都没变化，不会重新求值
+                'fullname3': function() {
+                    console.log('ok');
+                    return this.firstname3 + '-' + this.lastname3;
+                }
+            }
+        })
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueTest</title>
+    <style>
+        .router-link-active,
+        .myactive {
+            background-color: antiquewhite;
+            color: blueviolet;
+            font-weight: bold;
+            font-style: italic;
+            text-decoration: underline;
+        }
+        
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(200px);
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- <a href="#/login1">login1</a> -->
+        <!-- <a href="#/login2">login2</a> -->
+        <!-- router-link 默认渲染为一个 a 标签  class="class="router-link-exact-active router-link-active""-->
+        <router-link to="/login1?id=10&name=123" tag="span">login1</router-link>
+        <!-- 如果在路有种，使用查询字符串，给路由传递参数，不用修改路由规则的 path 属性 -->
+        <router-link to="/login2/11/124">login2</router-link>
+
+        <transition mode="out-in">
+            <!-- router-view 是 vue-router 提供的元素，占位符，路由规则匹配到的组件，就会展示在这 -->
+            <router-view></router-view>
+        </transition>
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script src="lib/vue-router.js"></script>
+    <script>
+        var login1 = {
+            template: '<h1> login1 --- {{ $route.query.id }} --- {{$route.query.name}} </h1>',
+            //组件的生命周期钩子函数
+            created() {
+                console.log(this.$route);
+            }
+        };
+        var login2 = {
+            template: '<h1> login2 --- {{ $route.params.id }} --- {{$route.params.name}} </h1>',
+            created() {
+                console.log(this.$route);
+            }
+        };
+
+
+        //创建路由对象，可为构造函数传递一个配置对象
+        var routerObj = new VueRouter({
+            //routes 路由匹配规则，每个匹配规则都是一个对象，两个属性
+            //path 监听哪个路由地址，component 表示如果路由是签名匹配到的path 则展示 component 对应的那个组件
+            routes: [{
+                path: '/',
+                redirect: '/login2' //根路径重定向为,一进来就显示login2
+            }, {
+                path: '/login1',
+                component: login1
+            }, {
+                path: '/login2/:id/:name', //:id 占位符，路由里面传值
+                component: login2
+            }],
+            linkActiveClass: 'myactive'
+        });
+
+        new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+
+            //将路由规则对象，注册到实例上，用来监听 URL 地址的变化，然后展示对应的组件
+            router: routerObj
+        })
+    </script>
+
+
+
+</body>
+
+</html>

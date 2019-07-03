@@ -15,6 +15,14 @@
         </template>
       </todo-item>
     </ul>
+
+
+
+    <router-link to="/account">account</router-link>
+    <router-link to="/goodslist">goodslist</router-link>
+    <router-view></router-view>
+
+
   </div>
 </template>
 
@@ -24,6 +32,8 @@ import TodoItem from "./components/TodoItem.vue";
 
 export default {
   name: "app",
+
+  //???? data ??? function
   data() {
     return {
       msg: "hello vue",

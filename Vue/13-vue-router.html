@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueTest</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <p>路由的嵌套</p>
+
+        <router-link to="/account">account</router-link>
+        <router-view></router-view>
+    </div>
+
+    <template id="tmp1">
+        <div>
+            <h1>Account Component</h1>
+            <router-link to="/account/login">login</router-link>
+            <router-link to="/account/register">register</router-link>
+            <router-view></router-view>
+        </div>
+    </template>
+
+    <script src="lib/vue.js"></script>
+    <script src="lib/vue-router.js"></script>
+    <script>
+        var account = {
+            template: '#tmp1'
+        };
+
+        var login = {
+            template: '<h3>login</h3>'
+        };
+        var register = {
+            template: '<h3>register</h3>'
+        };
+
+        var router = new VueRouter({
+            routes: [{
+                path: '/account',
+                component: account,
+                children: [{
+                    path: 'login', //子路由path前面不要/否则以根目录为起点
+                    component: login
+                }, {
+                    path: 'register',
+                    component: register
+                }]
+            }]
+        });
+
+        new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+
+            router
+        })
+    </script>
+
+
+
+</body>
+
+</html>

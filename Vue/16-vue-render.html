@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueTest</title>
+    <style>
+        .item {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <p>这里不会显示，会被 render 的内容全部替换</p>
+    </div>
+
+
+
+
+    <script src="lib/vue.js"></script>
+    <script>
+        var login = {
+            template: '<h1> login </h1>'
+        };
+
+        new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            render: function(createElements) {
+                return createElements(login);
+            }
+        })
+    </script>
+
+
+
+</body>
+
+</html>

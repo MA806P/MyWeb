@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Promise</title>
+</head>
+
+<body>
+
+    <div>
+        <dl>
+            <dt>Promise</dt>
+            <dd>1、Promise 是一个构造函数，new Promise()</dd>
+            <dd>2、包含两个函数，resolve 成功之后的回调函数，reject失败之后的回调函数</dd>
+            <dd>3、prototype 属性上，有一个.then()方法</dd>
+            <dd>4、Promise 表示一个异步操作，当创建一个实例，就表示一个具体的异步操作。</dd>
+            <dd>5、这个异步操作的结果，异步操作，无法使用return返回结果，只能用函数回调的方式，只能有两种状态：</dd>
+            <dd> a、异步执行成功 resolve函数把结果返回。b、失败 reject 结果返回。</dd>
+            <dd>6、可以在 new 出来的 Promise 实例上，调用 .then() 方法，预先指定成功和失败的回调函数</dd>
+        </dl>
+    </div>
+
+    <script>
+        // 形式上的异步操作，具体异步什么事，目前不清楚
+        var promise1 = new Promise();
+
+        const fs = require('fs');
+        // 具体的异步操作，function 指定一个具体的异步操作
+        var promise2 = new Promise(function() {
+            fs.readFile('vue_test.html', 'utf-8', (err, dataStr) => {
+                if (err) throw err;
+                console.log(dataStr);
+            })
+        });
+    </script>
+</body>
+
+</html>

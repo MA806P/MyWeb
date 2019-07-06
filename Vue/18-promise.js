@@ -75,4 +75,4 @@ getFileByPath('notes/test1.txt')
 console.log(' after log '); //这个先执行
 
 
-//执行命令： node promise.js
+//执行命令： node 18-promise.js

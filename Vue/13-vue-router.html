@@ -19,6 +19,15 @@
         <router-view></router-view>
     </div>
 
+    <div>
+        <p>编程式路由导航</p>
+        <p>1) this.$router.push(path): 相当于点击路由链接(可以返回到当前路由界面) </p>
+        <p>2) this.$router.replace(path): 用新路由替换当前路由(不可以返回到当前路由界面)</p>
+        <p>3) this.$router.back(): 请求(返回)上一个记录路由</p>
+        <p>4) this.$router.go(-1): 请求(返回)上一个记录路由</p>
+        <p>5) this.$router.go(1): 请求下一个记录路由</p>
+    </div>
+
     <template id="tmp1">
         <div>
             <h1>Account Component</h1>

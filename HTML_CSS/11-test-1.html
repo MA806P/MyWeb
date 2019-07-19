@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8" />
+
+    <style type="text/css">
+        .content {
+            background-color: bisque;
+            border: 2px red solid;
+            /* position: relative;
+            left: 20px; */
+            margin: auto 20px;
+        }
+        
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        .subtitle {
+            background-color: azure;
+            float: left;
+            position: relative;
+            left: 10px;
+        }
+        
+        .title-p {
+            float: left;
+        }
+        
+        .money {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>top</p>
+    <div class="content clearfix">
+        <p class="title-p">第一辆车</p>
+        <div class="subtitle">
+            <p>带货安装1</p>
+            <p>带货安装2</p>
+            <p>带货安装3</p>
+        </div>
+    </div>
+
+    <span class="address">address</span>
+    <span class="money">money</span>
+    <p>bottom</p>
+
+</body>
+
+</html>

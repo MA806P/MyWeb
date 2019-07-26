@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8" />
+
+    <style type="text/css">
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        .content2 {
+            background-color: bisque;
+            border: 2px red solid;
+            margin: auto 20px;
+        }
+        
+        .content2-left {
+            background-color: beige;
+            float: left;
+        }
+        
+        .content2-right {
+            background-color: aquamarine;
+            float: right;
+        }
+        
+        .line {
+            background-color: blue;
+            height: 3px;
+            clear: both;
+            position: relative;
+            top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content2 clearfix">
+        <div class="content2-left">
+            <p>this is p</p>
+            <p>this is p</p>
+            <p>this is p</p>
+        </div>
+
+        <div class="content2-right">
+            <p>right</p>
+        </div>
+
+        <div class="line"></div>
+    </div>
+
+
+</body>
+
+</html>

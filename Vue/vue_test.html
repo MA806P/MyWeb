@@ -13,8 +13,20 @@
 </head>
 
 <body>
-
     <div id="app">
+
+        <select v-model="searchType">
+                <option v-for="option in searchSelect" :value="option.value"
+                > {{ option.text }} </option>
+        </select>
+
+        <select>
+            <option value="1"> one </option>
+            <option value="2" selected> two </option>
+            <option value="3"> three </option>
+        </select>
+
+
         <input type="text" v-model='info' />
         <button @click='handleClick'>button</button>
 
@@ -38,7 +50,22 @@
             el: '#app',
             data: {
                 info: '',
-                list: []
+                list: [],
+
+                searchType: 'search[name]',
+                searchText: '',
+                searchSelect: [{
+                    text: '姓名',
+                    value: 'search[name]'
+                }, {
+                    text: '手机',
+                    value: 'search[phone]'
+                }, {
+                    text: '服务区域',
+                    value: 'search[district]'
+                }],
+
+
             },
             methods: {
                 handleClick() {

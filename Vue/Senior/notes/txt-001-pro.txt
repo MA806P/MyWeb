@@ -1,0 +1,40 @@
+
+
+属性
+
+props: {
+    name: String,
+    type: {
+      validator: function(value) {
+        // 这个值必须匹配下列字符串中的一个
+        return ["success", "warning", "danger"].includes(value);
+      }
+    },
+    list: {
+      type: Array,
+      // 对象或数组默认值必须从一个工厂函数获取
+      default: () => []
+    },
+    isVisible: {
+      type: Boolean,
+      default: false
+    },
+    onChange: {
+      type: Function,
+      default: () => {}
+    }
+  },
+
+
+
+<Props
+          name="Hello Vue！"
+          :type="type"
+          :is-visible="false"
+          :on-change="handlePropChange"
+          title="属性Demo"
+          class="test1"
+          :class="['test2']"
+          :style="{ marginTop: '20px' }"
+          style="margin-top: 10px"
+        />

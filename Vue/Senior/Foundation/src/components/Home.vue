@@ -2,7 +2,7 @@
     <div id="nav">
         <p>this is test</p>
 
-        <router-link :to="'/1.1'">Èı´óÄ£¿é</router-link>
+        <router-link :to="'/1.1'">ä¸‰å¤§æ¨¡å—</router-link>
     </div>
 </template>
 

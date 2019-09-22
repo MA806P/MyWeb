@@ -1,16 +1,26 @@
 <template>
     <div>
         <a-tabs>
-            <a-tab-pane tab="ÊôÐÔ">
+            <a-tab-pane tab="å±žæ€§" key="props">
+                <Props 
+                    name="Hello Vue! "
+                    :type="type"
+                    :is-visible="false"
+                    :on-change="handlePropChange"
+                    title="å±žæ€§Demo"
+                    class="test1"
+                    :style="{marginTop: '20px'}"
+                    style="margin-top: 10px"
+                />
             </a-tab-pane>
 
-            <a-tab-pane tab="ÊÂ¼þ">
+            <a-tab-pane tab="äº‹ä»¶">
             </a-tab-pane>
 
-            <a-tab-pane tab="²å²Û">
+            <a-tab-pane tab="æ’æ§½">
             </a-tab-pane>
 
-            <a-tab-pane tab="´óÊôÐÔ">
+            <a-tab-pane tab="å¤§å±žæ€§">
             </a-tab-pane>
         </a-tabs>
     </div>
@@ -18,15 +28,23 @@
 
 
 <script>
+import Props from "./Props"
 export default {
+    components: {
+        Props,
+    },
     data: ()=> {
         return {
-
-        }
+            name: "",
+            type: "success", 
+            bigPropsName: "Hello world!"
+        };
     },
 
     methods: {
-
+        handlePropChange(val) {
+            this.type = val;
+        },
     }
 }
 </script>

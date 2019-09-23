@@ -42,8 +42,10 @@ export default {
 
     methods: {
         handleClick() {
-            //this.type = "warning";
-            this.onChange(this.type === "success" ? "" : "success");
+          //this.type = "warning";
+
+          console.log("Props type = " + this.type);
+          this.onChange(this.type === "success" ? "warning" : "success");
         }
     }
 

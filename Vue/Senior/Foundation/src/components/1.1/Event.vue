@@ -3,7 +3,7 @@
   <div>
     name: {{ name || "--"}}
     <br/>
-    <input :value = "name" @change = "handleChange" />
+    <input :value = "name" @change="handleChange" />
     <br/>
     <div @click = "handleDivClick">
       <button @click = "handleClick">重置成功</button>
@@ -23,13 +23,15 @@
     },
     methods: {
       handleChange(e) {
-        this.$emit("change", e.target.value);
+        console.log('event handle change');
+        this.$emit("childEvent", e.target.value);
       },
       handleDivClick() {
-        this.$emit("change", "");
+        console.log('event handle div');
+        this.$emit("childEvent", "");
       },
       handleClick(e) {
-
+        console.log("event handle click");
       }
     },
 

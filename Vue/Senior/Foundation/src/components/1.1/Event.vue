@@ -32,6 +32,8 @@
       },
       handleClick(e) {
         console.log("event handle click");
+        // 都会失败
+        e.stopPropagation();
       }
     },
 

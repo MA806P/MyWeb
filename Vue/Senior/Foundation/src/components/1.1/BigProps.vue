@@ -6,6 +6,8 @@
     <button @click="handleChange"> change name </button>
     <br/>
 
+    <!--插槽的内容通过属性来传递-->
+    <!--{{ slotDefault }} 通过下面函数式子件来解析内容-->
     <VNodes :vnodes="slotDefault" />
     <br/>
     <VNodes :vnodes="slotTitle" />

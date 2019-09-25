@@ -16,6 +16,7 @@
 <script>
 export default {
     name: "PropsDemo",
+    // inheritAttrs: false, //自动挂载title
     // props: ['name', 'type', 'list', 'isVisible'],
     props: {
         name: String,
@@ -42,7 +43,12 @@ export default {
 
     methods: {
         handleClick() {
+
+          //属性是单向数据流，不能在子组件中修改父组件传递过来的值
           //this.type = "warning";
+
+          // 子组件为何不可以修改父组件传递的prop,
+          // 如果修改了，vue 是如何监控到属性的修改并给出警告的
 
           console.log("Props type = " + this.type);
           this.onChange(this.type === "success" ? "warning" : "success");

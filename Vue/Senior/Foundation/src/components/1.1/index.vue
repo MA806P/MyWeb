@@ -14,7 +14,16 @@
                     :style="{marginTop: '20px'}"
                     style="margin-top: 10px"
                 />
+
+              <Proxy :info="proxyInfo" @change="proxyHandleChange"/>
+
+
             </a-tab-pane>
+
+
+          <a-tab-pane tab="属性2" key="proxy">
+            <Proxy :info="proxyInfo" @change="proxyHandleChange"/>
+          </a-tab-pane>
 
 
 
@@ -63,8 +72,10 @@ import Props from "./Props"
 import Event from "./Event"
 import Slot from "./Slot"
 import BigProps from "./BigProps"
+import Proxy from "./Proxy"
 export default {
     components: {
+      Proxy,
       Props,
       Event,
       SlotDemo: Slot,
@@ -74,7 +85,9 @@ export default {
         return {
             name: "",
             type: "success",
-            bigPropsName: "Hello world!"
+            bigPropsName: "Hello world!",
+
+          proxyInfo: {}
         };
     },
 
@@ -111,6 +124,13 @@ export default {
 
       getItem(props) {
         return [ this.$createElement("p", `item slot-scope ${JSON.stringify(props)}`)];
+      },
+
+
+      proxyHandleChange(val) {
+        window.isUpdatingChildComponent = true;
+        this.proxyInfo.name = val;
+        this.proxyInfo = { name: val };
       }
     }
 }

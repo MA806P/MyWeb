@@ -21,6 +21,7 @@
     methods: {
 
       handleChange(e) {
+        console.log(e + '---' + e.target.value);
         this.info.name = e.target.value;
         this.$forceUpdate();
         //this.$emit("change", e.target.value);

@@ -47,8 +47,9 @@ export default {
           //属性是单向数据流，不能在子组件中修改父组件传递过来的值
           //this.type = "warning";
 
-          // 子组件为何不可以修改父组件传递的prop,
+          // 思考： 子组件为何不可以修改父组件传递的prop,
           // 如果修改了，vue 是如何监控到属性的修改并给出警告的
+          // 参考例子 Proxy.vue
 
           console.log("Props type = " + this.type);
           this.onChange(this.type === "success" ? "warning" : "success");

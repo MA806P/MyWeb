@@ -5,16 +5,23 @@ import Home from "./components/Home.vue";
 Vue.use(Router);
 
 export default new Router({
-    routes: [{
-            path: "/",
-            name: "home",
-            component: Home
-        },
-        {
-            path: "/1.1",
-            name: "Three Part",
-            component: () =>
-                import ("./components/1.1")
-        }
-    ]
+  routes: [
+    {
+      path: "/",
+      name: "home",
+      component: Home
+    },
+    {
+      path: "/1.1",
+      name: "Three Part",
+      component: () =>
+        import ("./components/1.1")
+    },
+    {
+      path: "/1.2",
+      name: "VM",
+      component: () =>
+        import ("./components/1.2")
+    }
+  ]
 })

@@ -24,7 +24,15 @@
     methods: {
       handleChange(e) {
         console.log('event handle change');
-        this.$emit("childEvent", e.target.value);
+        //this.$emit("childEvent", e.target.value);
+
+        //思考：this.$emit 触发事件，返回值是什么，上层组件有返回值，能不能接收到
+        const  res = this.$emit("childEvent", e.target.value, val => {
+          console.log('this.$emit back -- ' + val); //hello
+        });
+        console.log(res, res === this); // VueComponent  true
+
+
       },
       handleDivClick() {
         console.log('event handle div');

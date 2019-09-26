@@ -15,15 +15,10 @@
                     style="margin-top: 10px"
                 />
 
+              <br/>
+              <br/>
               <Proxy :info="proxyInfo" @change="proxyHandleChange"/>
-
-
             </a-tab-pane>
-
-
-          <a-tab-pane tab="属性2" key="proxy">
-            <Proxy :info="proxyInfo" @change="proxyHandleChange"/>
-          </a-tab-pane>
 
 
 
@@ -34,6 +29,8 @@
 
 
             <a-tab-pane tab="插槽" key="slot">
+
+              <!--思考：相同名称的插槽是合并还是替换？ -->
               <SlotDemo>
                 <p>default slot</p>
                 <p slot="title">this slot title</p>
@@ -72,7 +69,7 @@ import Props from "./Props"
 import Event from "./Event"
 import Slot from "./Slot"
 import BigProps from "./BigProps"
-import Proxy from "./Proxy"
+import Proxy from "./Proxy.vue"
 export default {
     components: {
       Proxy,
@@ -101,11 +98,16 @@ export default {
           this.type = val;
         },
 
-      handleEventChange(val) {
+      handleEventChange(val, callBack) {
           // 子组件把事件赋值给了父组件中的本方法
           // 在子组件中通过 this.$emit("childEvent", val); 调用
           // console.log('this val = ' + val);
           this.name = val;
+
+          //子组件通过 this.$emit 来触发上层的方法
+          //如果有返回值，子组件能不能接收到
+          callBack("hello");
+          return "hello";
       },
 
       handleBigPropChange(val) {
@@ -129,7 +131,7 @@ export default {
 
       proxyHandleChange(val) {
         window.isUpdatingChildComponent = true;
-        this.proxyInfo.name = val;
+        //this.proxyInfo.name = val;
         this.proxyInfo = { name: val };
       }
     }

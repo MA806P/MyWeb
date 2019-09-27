@@ -8,7 +8,7 @@
     </select>
     <input :value="phoneInfo.phone"
            type="number"
-           placeholder="手机号"
+           placeholder="手机号0"
            @input="handlePhoneChange"
     />
     <input :value="zipCode"

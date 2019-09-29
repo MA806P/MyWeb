@@ -1,16 +1,23 @@
 <template>
   <div class="border">
     <h1>A 节点</h1>
-    <button @click="orderAsc = !orderAsc">移动</button>
-    <div v-if="orderAsc">
+    <button @click="init = !init">删除CEF，新建CEF</button>
+    <div v-if="init">
       <ChildrenB/>
-      <ChildrenC></ChildrenC>
+      <ChildrenC>
+        <ChildrenE/>
+        <ChildrenF/>
+      </ChildrenC>
       <ChildrenD/>
     </div>
     <div v-else>
-      <ChildrenC></ChildrenC>
+      <ChildrenB>
+        <ChildrenC>
+          <ChildrenE/>
+          <ChildrenF/>
+        </ChildrenC>
+      </ChildrenB>
       <ChildrenD/>
-      <ChildrenB/>
     </div>
   </div>
 </template>
@@ -19,17 +26,21 @@
   import ChildrenB from "./ChildrenB";
   import ChildrenC from "./ChildrenC";
   import ChildrenD from "./ChildrenD";
+  import ChildrenE from "./ChildrenE";
+  import ChildrenF from "./ChildrenF";
 
   export default {
     components: {
       ChildrenB,
       ChildrenC,
-      ChildrenD
+      ChildrenD,
+      ChildrenE,
+      ChildrenF
     },
 
     data() {
       return {
-        orderAsc: true
+        init: true
       };
     }
   }

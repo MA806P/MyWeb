@@ -28,6 +28,12 @@ export default new Router({
       name: "Node",
       component: () =>
         import ("./components/1.3")
+    },
+    {
+      path: "/1.4",
+      name: "Update",
+      component: () =>
+        import ("./components/1.4")
     }
   ]
 })

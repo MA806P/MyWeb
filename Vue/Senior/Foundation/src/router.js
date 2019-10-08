@@ -34,6 +34,12 @@ export default new Router({
       name: "Update",
       component: () =>
         import ("./components/1.4")
+    },
+    {
+      path: "/1.5",
+      name: "Computed",
+      component: () =>
+        import ("./components/1.5")
     }
   ]
 })

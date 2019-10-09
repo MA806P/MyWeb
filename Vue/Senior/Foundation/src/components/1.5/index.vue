@@ -8,6 +8,18 @@
       <a-tab-pane key="Watch" tab="监听器">
         <Watch />
       </a-tab-pane>
+
+      <a-tab-pane key="vs" tab="计算属性 vs 监听器">
+        <Computed1 />
+        <br/>
+        <br/>
+        <Watch1 />
+      </a-tab-pane>
+
+      <a-tab-pane key="WatchPro" tab="节流">
+        <WatchPro />
+      </a-tab-pane>
+
     </a-tabs>
 
 
@@ -29,17 +41,31 @@
     </p>
     <br/>
     <br/>
+    <p>
+      computed 能做的 watch 都能做，反之不行。能用 computed 的尽量用 computed
+    </p>
+    <br/>
+    <p>
+      节流，直到用户停止输入超过 500毫秒后，才更新 fullName
+    </p>
+    <br/>
   </div>
 </template>
 
 <script>
   import Computed from "./Computed"
   import Watch from "./Watch"
+  import Computed1 from "./Computed1"
+  import Watch1 from "./Watch1"
+  import WatchPro from "./Watch1_pro"
 
   export  default {
     components: {
       Computed,
-      Watch
+      Watch,
+      Computed1,
+      Watch1,
+      WatchPro
     }
   }
 </script>

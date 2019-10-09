@@ -40,6 +40,12 @@ export default new Router({
       name: "Computed",
       component: () =>
         import ("./components/1.5")
+    },
+    {
+      path: "/1.6",
+      name: "LifeCycle",
+      component: () =>
+        import ("./components/1.6")
     }
   ]
 })

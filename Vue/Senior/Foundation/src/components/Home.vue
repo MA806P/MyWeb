@@ -11,6 +11,8 @@
       <router-link :to="'/1.4'">1.4 触发组件更新</router-link>
       <br/>
       <router-link :to="'/1.5'">1.5 计算属性、监听器</router-link>
+      <br/>
+      <router-link :to="'/1.6'">1.6 生命周期、函数式组件</router-link>
     </div>
 </template>
 

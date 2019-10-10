@@ -26,6 +26,10 @@
       </a-tab-pane>
 
 
+      <a-tab-pane key="spike" tab="秒杀例子">
+        <Spike :start-time="startTime" :end-time="endTime" />
+      </a-tab-pane>
+
     </a-tabs>
 
 
@@ -33,7 +37,8 @@
     <br/>
     <p>
       生命周期
-      vue 组件创建的时候，都会经历一系列的初始化过程。数据更新、销毁的时候，都会提供一些钩子函数，帮助我们执行一系列操作。
+      vue 组件创建的时候，都会经历一系列的初始化过程。
+      数据更新、销毁的时候，都会提供一些钩子函数，帮助我们执行一系列操作。
     </p>
     <br/>
     <p>
@@ -50,18 +55,24 @@
   import Clock from "./Clock"
   import Functional from "./Functional"
   import TempVar from "./TempVar"
+  import Spike from "./Spike"
+  import moment from "moment"
 
   export  default {
     components: {
       Clock,
       Functional,
-      TempVar
+      TempVar,
+      Spike
     },
 
     data() {
       return {
         destroyClock: false,
-        name: "vue"
+        name: "vue",
+
+        startTime: moment("2019-10-10 11:30:00"),
+        endTime: moment("2019-10-10 11:31:00")
       };
     }
   }

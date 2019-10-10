@@ -46,6 +46,12 @@ export default new Router({
       name: "LifeCycle",
       component: () =>
         import ("./components/1.6")
+    },
+    {
+      path: "/1.7",
+      name: "Directives",
+      component: () =>
+        import ("./components/1.7")
     }
   ]
 })

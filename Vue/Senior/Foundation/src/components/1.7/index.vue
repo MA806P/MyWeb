@@ -12,6 +12,8 @@
     <br/>
     <br/>
     <p> 思考：组件生命周期和指令生命周期钩子的运行顺序 </p>
+    <p> beforeCreate  data  created  beforeMount  render  mounted </p>
+    <p> bind  inserted  update  componentUpdated unbind</p>
   </div>
 </template>
 

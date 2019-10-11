@@ -15,6 +15,8 @@
       <router-link :to="'/1.6'">1.6 生命周期、函数式组件</router-link>
       <br/>
       <router-link :to="'/1.7'">1.7 指令</router-link>
+      <br/>
+      <router-link :to="'/1.8'">1.8 常用高级特性</router-link>
     </div>
 </template>
 

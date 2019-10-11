@@ -52,6 +52,12 @@ export default new Router({
       name: "Directives",
       component: () =>
         import ("./components/1.7")
+    },
+    {
+      path: "/1.8",
+      name: "Communication",
+      component: () =>
+        import ("./components/1.8")
     }
   ]
 })

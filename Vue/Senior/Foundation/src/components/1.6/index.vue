@@ -39,6 +39,7 @@
       生命周期
       vue 组件创建的时候，都会经历一系列的初始化过程。
       数据更新、销毁的时候，都会提供一些钩子函数，帮助我们执行一系列操作。
+      beforeCreate  data  created  beforeMount  render  mounted
     </p>
     <br/>
     <p>

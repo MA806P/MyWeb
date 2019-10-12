@@ -1,0 +1,19 @@
+<template>
+  <div class="border2">
+    <h3 :style="{ color: theme1.color }">F 节点</h3>
+  </div>
+</template>
+
+<script>
+  export default {
+
+    inject: {
+      theme1: {
+        //theme1 取个别名
+        from: "theme",
+        default: () => ({})
+      }
+    }
+
+  }
+</script>

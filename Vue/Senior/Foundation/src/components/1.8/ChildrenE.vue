@@ -1,6 +1,9 @@
 <template>
   <div class="border2">
-    <h3 :style="{ color: theme.color }">E 节点</h3>
+    <h3 :style="{ color: theme.color }"
+        v-ant-ref="c => setChildrenRef('childrenE', c)">
+      E 节点
+    </h3>
 
     <button @click="handleClick">改变 color = green</button>
 
@@ -13,6 +16,10 @@
     inject: {
       theme: {
         default: () => ({})
+      },
+
+      setChildrenRef: {
+        default: () => {}
       }
     },
 

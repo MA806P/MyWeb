@@ -19,6 +19,9 @@
       <br/>
       provide 就是为了解决这个问题而诞生的。provide 提供数据，inject 注入数据。
       节点层层冒泡去取数据
+      <br/>
+      <br/>
+      v-ant-ref 指令回调中能否去更改响应式数据？
     </p>
   </div>
 </template>

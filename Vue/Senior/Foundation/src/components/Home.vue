@@ -17,6 +17,8 @@
       <router-link :to="'/1.7'">1.7 指令</router-link>
       <br/>
       <router-link :to="'/1.8'">1.8 常用高级特性 跨级传值、获取组件实例</router-link>
+      <br/>
+      <router-link :to="'/1.9'">1.9 template JSX</router-link>
     </div>
 </template>
 

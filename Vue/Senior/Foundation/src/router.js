@@ -58,6 +58,12 @@ export default new Router({
       name: "Communication",
       component: () =>
         import ("./components/1.8")
+    },
+    {
+      path: "/1.9",
+      name: "TemplateJSX",
+      component: () =>
+        import ("./components/1.9")
     }
   ]
 })

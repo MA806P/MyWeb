@@ -24,6 +24,10 @@
       <br/>
       <br/>
       思考： 数组有哪些方法支持响应式更新，如不支持如何处理，底层原理如何实现？
+      <br/>
+      支持的：push pop shift unshift splice sort reverse
+      不支持： filter concat slice
+      原理同样使用 Object.defineProperty 对数组方法进行改写
 
     </p>
   </div>

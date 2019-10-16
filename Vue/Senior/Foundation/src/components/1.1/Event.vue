@@ -27,6 +27,7 @@
         //this.$emit("childEvent", e.target.value);
 
         //思考：this.$emit 触发事件，返回值是什么，上层组件有返回值，能不能接收到
+        // this.$emit 返回值 this
         const  res = this.$emit("childEvent", e.target.value, val => {
           console.log('this.$emit back -- ' + val); //hello
         });

@@ -66,6 +66,8 @@
       <br/>
       为何不能使用 index 作为 key ?
       开发中经常使用数组 v-for 生成子节点，使用 index 作为 key 会有bug。
+      <br/>
+      更新 DOM 性能问题。会引入状态 Bug 问题。
     </p>
 
   </div>

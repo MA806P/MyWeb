@@ -14,7 +14,7 @@
 
         //函数声明提前，会在所有代码执行之前就被创建，可以在函数声明前来调用函数
         //使用函数表达式创建的函数不会被声明提前
-        func1();
+        func1(); //func1
 
         function func1() {
             console.log('func1');
@@ -31,12 +31,17 @@
             console.log(this);
         };
         func2(); //window.func2(); //this = window
+        //func2
+        //window { }
 
         var obj = {
             name: '123',
             say: func2
         };
         obj.say(); //this=obj
+        //func2 123
+        //Object {name:"123", say: func... }
+
     </script>
 
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>JSX Babel</title>
+
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 快速尝试使用 JSX -->
+        <!-- Don't use this in production: -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+
+    <body>
+        <div id="root"></div>
+
+        <!-- JSX 就是在 js 代码中直接使用 HTML 标记。其本质，动态创建组件的语法糖。 -->
+        <script type="text/babel">
+
+            function formatName(user) {
+                return user.firstName + ' ' + user.lastName;
+            }
+
+            const user = {
+                firstName: 'abc',
+                lastName: 'def'
+            };
+            
+            const name = 'Tom';
+            const element = <h2>hello, {name}. hello {formatName(user)}!</h2>;
+
+            ReactDOM.render (
+                // <h1>Hello, World!</h1>,
+                element,
+                document.getElementById('root')
+            );
+
+
+            // JSX 中指定属性。可以使用引号 指定为字符串字面量值。也可以使用大括号 插入JS表达式
+            // const element = <img src={user.avatarUrl}></img>;
+
+            //JSX 指定子元素。 const element = (<div> <h1>Hello!</h1> </div>);
+
+            //Babel 会把 JSX 转译成一个名为 React.createElement() 函数调用。
+
+
+        </script>
+    </body>
+</html>

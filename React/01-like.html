@@ -13,7 +13,14 @@
         <!-- put react component inside this div -->
         <div id="like_button_container"></div>
 
+        <!-- 加载 React。部署时，将 "development.js" 替换为 "production.min.js"。 -->
+        <!-- 通过 CDN 获得 React 和 ReactDOM 的 UMD 版本。 -->
+        <!-- 如果需要加载指定版本的 react 和 react-dom，可以把 17 替换成所需加载的版本号。 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 
-        <script></script>
+        <!-- 自创建的 React 组件 -->
+        <script src="like_button.js" ></script>
+
     </body>
 </html>

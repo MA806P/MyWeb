@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>state</title>
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+
+    <body>
+
+        <div id="root"></div>
+
+        <script type="text/babel">
+
+            /*
+            class Clock extends React.Component {
+                //将 props 传递到父类的构造函数中
+                constructor(props) {
+                    super(props);
+                    this.state = {date: new Date()}; //state 赋初值
+                }
+                render() {
+                    return (
+                        <div>
+                            <h1>Hello, world!</h1>
+                            <h2>It is {this.state.date.toLocaleTimeString() }</h2>
+                        </div>
+                    );
+                }
+            }
+    
+            function tick() {
+                ReactDOM.render(
+                    <Clock />,
+                    document.getElementById('root')
+                );
+            }
+            //上个例子，转换为 class 组件，使用 state 来保存 date 数据，在组件内部更新时间。
+            //把 render() 方法中的 this.props.date 替换成 this.state.date 。
+            //就不用函数组件的方法，把 date 数据通过属性 props 传递给组件 <Clock date={new Date()} />
+
+            setInterval(tick, 1000);
+            */
+
+            //上面的，虽然每秒调用 tick ReactDOM.render()，但是 state 只给了初始值，每秒没更新 state
+            //下面的，setState() 的调用，React 能够知道 state 已经改变了，
+            //然后会重新调用 render() 方法来确定页面上该显示什么，
+            //这时render() 方法中的 this.state.date 就不一样了，如此就会渲染输出更新过的时间。React 也会相应的更新 DOM。
+            class Clock extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {date: new Date()};
+                }
+
+                //生命周期方法
+                //挂载，组件第一次被渲染到 DOM 中的时候。设置计时器。
+                componentDidMount() {
+                    this.timerID = setInterval(
+                        () => this.tick(), 
+                        1000
+                    );
+                }
+
+                //卸载，组件被删除的时候。清除计时器。
+                componentWillUnmount() {
+                    clearInterval(this.timerID);
+                }
+                //this.props 和 this.state 是 React 本身设置的，且都拥有特殊的含义，
+                //但是你可以向 class 中随意添加不参与数据流的额外字段，比如 this.timerID
+
+                tick() {
+                    this.setState({date: new Date()}); //更新组件 state
+                }
+
+                render() {
+                    return (
+                        <div>
+                            <h1>{this.state.date.toLocaleTimeString()}</h1>    
+                        </div>
+                    );
+                }
+            }
+
+            ReactDOM.render(<Clock />, document.getElementById('root'));
+
+
+            //正确使用 state 
+                //1、不要直接修改 state，应使用 setState()。
+                //构造函数 constructor() 是唯一可给 this.state 复制的地方。
+
+                //2、state 的更新可能是异步的，出于性能考虑，React 可能会把多个 setState() 调用合并成一个调用。
+                //this.props 和 this.state 可能会异步更新，所以你不要依赖他们的值来更新下一个状态。
+                //this.setState({ counter: this.state.counter + this.props.increment}); 错误的用法
+                //可让其接收一个函数而不是对象，函数用上一个 state 作为第一个参数
+                //this.setState((state, props) => ({counter: state.counter + props.increment}));
+
+                //3、state 的更新会被合并
+                //this.state = {posts: [],comments: []}; 
+                //this.setState({posts:[...]});   this.setState({comments:[...]}); 
+
+                //4、数据是向下流动的
+                //任何的 state 总是所属于特定的组件，而且从该 state 派生的任何数据或 UI 只能影响树中“低于”它们的组件
+
+        </script>
+
+    </body>
+</html>

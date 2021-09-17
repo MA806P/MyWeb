@@ -1,6 +1,6 @@
 import React from "react";
 import './App.css';
-import AContext from "./01-context";
+import MyContext from "./01-context";
 
 
 class App extends React.Component {
@@ -13,19 +13,26 @@ class App extends React.Component {
 
   navClick(type) {
     console.log('nav click '+type);
-    this.setState({nav: type});
+    this.setState({type: type});
   }
 
   render() {
 
-    // const navItems = this.state.navs.forEach(
-    //     (item) => <p key={item.type.toString()}>aaa</p>
-    // );
+    const navItems = this.state.navs.map(
+        (item) =>
+            <button
+                className="App-link"
+                onClick={() => this.navClick(item.type)}
+                key={item.type.toString()}
+            >
+              {item.text}
+            </button>
+    );
 
     const type = this.state.type;
     let contentView;
     if (type === 0) {
-      contentView = <AContext />;
+      contentView = <MyContext />;
     } else {
       contentView = <p>Hello !</p>
     }
@@ -33,7 +40,7 @@ class App extends React.Component {
     return (
         <div className="App">
           <header className="App-header">
-            <div className="App-nav"><button className="App-link" onClick={this.navClick(0)}>Context</button></div>
+            <div className="App-nav"><ul>{navItems}</ul></div>
             <div className="App-content">{contentView}</div>
           </header>
         </div>

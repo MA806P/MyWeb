@@ -1,13 +1,19 @@
 import React from "react";
 import './App.css';
 import MyContext from "./01-context";
+import MyContext1 from "./01-context-1";
+import MyRefs from "./02-refs";
 
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    const navs = [{type:0, text:"Context"}, {type:1, text:"Error"}];
+    const navs = [
+        {type:0, text:"Context"},
+        {type:1, text:"Context1"},
+        {type:2, text:"Refs"},
+    ];
     this.state = {type: -1, navs: navs};
   }
 
@@ -32,7 +38,11 @@ class App extends React.Component {
     const type = this.state.type;
     let contentView;
     if (type === 0) {
-      contentView = <MyContext />;
+      contentView = <MyContext/>;
+    } else if (type === 1) {
+      contentView = <MyContext1/>;
+    } else if (type === 2) {
+      contentView = <MyRefs/>;
     } else {
       contentView = <p>Hello !</p>
     }

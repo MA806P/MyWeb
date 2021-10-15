@@ -84,7 +84,11 @@
         }
         console.log(arrTest); //[1, 2, 3, 4, 5, 6, 7]
 
-
+        let res = arrTest.find((item) => item > 3);
+        console.log(res); 
+        //在数组中找第一个满足条件的元素，找到后之后的元素不再调用执行函数。
+        //没有符合的返回 undefined。不影响原数组。
+ 
         //concat 合并数组，不会影响原数组
         var a = [1, 2, 3];
         console.log(a.concat([4, 5], '6'), a); // [1, 2, 3, 4, 5, '6']  [1, 2, 3]

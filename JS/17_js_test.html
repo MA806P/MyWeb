@@ -15,10 +15,116 @@
     <p>this is test</p>
 
     <script type='text/javascript'>
+
+    /*
         var a = "abc";
         var b = "abc";
         console.log(a == b); //true
         console.log(a === b); //true
+        */
+
+        /*
+        //做 rn 的项目测试，find 的用法
+        var testArray = [{"name": "tom"},{"name": "jack"}];
+        testArray.map((item) => {
+            console.log(item.name);
+            if (item.name === "tom") {
+                item.isChecked = true;
+            }
+        });
+        var result = testArray.find((item)=> item.isChecked) != undefined;
+        console.log("aaa " + result);
+        console.log(testArray);
+        */
+
+
+        /*
+
+        function formatPhoneNumber(number) {
+            var cleaned = ('' + number);//.replace(/\D/g, '');
+            var regExp;
+            if (cleaned.length >= 11) {
+                regExp = /^(\d{3})(\d{4})(\d{4,})$/;
+            } else {
+                regExp = /^(\d{3})(\d{0,3})(\d{0,4})$/;
+            }
+            var match = cleaned.match(regExp);
+            console.log('1=' + match);
+            if (match) {
+                return match[1] + ' ' + match[2] + ' ' + match[3];
+            }
+            return null;
+        }
+
+        var str = '4004001234转12345';
+        if (str.indexOf('转')) {
+
+        }
+
+        // console.log(formatPhoneNumber('123456789012345'));
+        // console.log(formatPhoneNumber('4004001234转12345')+'-');
+
+
+        let mobileNumber = '4004001234,,12345';
+                let firstNumber = '', lastNumber = '';
+                let numbers = [];
+                if (mobileNumber.includes(',,')) {
+                    numbers = mobileNumber.split(',,');
+                } else if (mobileNumber.includes('转')) {
+                    numbers = mobileNumber.split('转');
+                }
+
+                if (numbers.length > 1) {
+                    firstNumber = numbers[0];
+                    lastNumber = numbers[1];
+                } else {
+                    firstNumber = numbers[0];
+                }
+
+                console.log(numbers, firstNumber, lastNumber);
+
+                let result = formatPhoneNumber(firstNumber) + ' 转 ' + lastNumber;
+                console.log(result); 
+
+
+        */
+
+
+
+        /*
+        let addressText = '太平洋:伤心太平洋';
+        let shopNameText = '';
+                if (addressText.includes(':')) {
+                    let addressArray = addressText.split(':');
+                    console.log(addressArray);
+                    if (addressArray && addressArray.length > 1) {
+                        if (shopNameText.length == 0) {
+                            shopNameText = addressArray[0];
+                        }
+                        addressText = addressArray[1];
+                    }
+                }
+        console.log(shopNameText, addressText);
+
+        */
+
+
+        let array = ['2020-10-01', '2020-11-01', '自定义'];
+        let result = array[0];
+        for (j = 0, len=array.length; j < len; j++) {
+            console.log(array[j]);
+            if (array[j].indexOf("自定义") === -1 && array[j] > result) {
+                result = array[j];
+            }
+        }
+        console.log('res = ' + result);
+        console.log(Date.parse('1970-01-02')+'');
+        console.log('-----');
+
+        let firstPaymentTimeEnd = new Date() + '';
+        console.log(firstPaymentTimeEnd);
+        console.log(Date.parse(firstPaymentTimeEnd)+'');
+
     </script>
 </body>
 

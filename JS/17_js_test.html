@@ -66,44 +66,44 @@
 
 
         let mobileNumber = '4004001234,,12345';
-                let firstNumber = '', lastNumber = '';
-                let numbers = [];
-                if (mobileNumber.includes(',,')) {
-                    numbers = mobileNumber.split(',,');
-                } else if (mobileNumber.includes('转')) {
-                    numbers = mobileNumber.split('转');
-                }
+        let firstNumber = '', lastNumber = '';
+        let numbers = [];
+        if (mobileNumber.includes(',,')) {
+            numbers = mobileNumber.split(',,');
+        } else if (mobileNumber.includes('转')) {
+            numbers = mobileNumber.split('转');
+        }
 
-                if (numbers.length > 1) {
-                    firstNumber = numbers[0];
-                    lastNumber = numbers[1];
-                } else {
-                    firstNumber = numbers[0];
-                }
+        if (numbers.length > 1) {
+            firstNumber = numbers[0];
+            lastNumber = numbers[1];
+        } else {
+            firstNumber = numbers[0];
+        }
 
-                console.log(numbers, firstNumber, lastNumber);
+        console.log(numbers, firstNumber, lastNumber);
 
-                let result = formatPhoneNumber(firstNumber) + ' 转 ' + lastNumber;
-                console.log(result); 
+        let result = formatPhoneNumber(firstNumber) + ' 转 ' + lastNumber;
+        console.log(result); 
 
 
         */
 
-
+        
 
         /*
         let addressText = '太平洋:伤心太平洋';
         let shopNameText = '';
-                if (addressText.includes(':')) {
-                    let addressArray = addressText.split(':');
-                    console.log(addressArray);
-                    if (addressArray && addressArray.length > 1) {
-                        if (shopNameText.length == 0) {
-                            shopNameText = addressArray[0];
-                        }
-                        addressText = addressArray[1];
-                    }
+        if (addressText.includes(':')) {
+            let addressArray = addressText.split(':');
+            console.log(addressArray);
+            if (addressArray && addressArray.length > 1) {
+                if (shopNameText.length == 0) {
+                    shopNameText = addressArray[0];
                 }
+                addressText = addressArray[1];
+            }
+        }
         console.log(shopNameText, addressText);
 
         */
